@@ -10,10 +10,6 @@ function World() {
 	this.root = null;
 	this.scene.add(new THREE.AmbientLight(0x404040));
 
-	var light = new THREE.PointLight(0xffff88, 1, 20);
-	light.position.set(0, 0, 8);
-	this.scene.add(light);
-
 	this.rebuildScene();
 };
 
