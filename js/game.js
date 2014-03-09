@@ -29,12 +29,19 @@ Game.prototype.addActor = function(actor) {
 };
 
 Game.prototype.update = function(dt) {
+	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
-		if (!actor.controller) continue;
-		actor.controller.update(dt);
-		actor.position.x += actor.controller.moveInput.x;
-		actor.position.y += actor.controller.moveInput.y;
+		var controller = actor.controller;
+		if (!controller) continue;
+		controller.update(dt);
+		if (controller.moveInput.x == 0 && controller.moveInput.y == 0) continue;
+		var newx = Math.round(actor.position.x + controller.moveInput.x);
+		var newy = Math.round(actor.position.y + controller.moveInput.y);
+		if (map.isWalkable(newx, newy)) {
+			actor.position.x = newx;
+			actor.position.y = newy;
+		}
 	}
 }
 

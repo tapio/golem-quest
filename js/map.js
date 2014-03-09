@@ -86,12 +86,17 @@ function Map(w, h, data) {
 		return true;
 	};
 
+	this.isWalkable = function(x, y) {
+		var c = this.map[y * w + x];
+		return c != WALL && c != ROCK && c != TREE;
+	};
+
 	this.getWalkableMatrix = function() {
 		var grid = new Array(h);
 		for (var j = 0; j < h; ++j) {
 			grid[j] = [];
 			for (var i = 0; i < w; ++i) {
-				grid[j].push(this.map[j * w + i] == WALL ? 1 : 0);
+				grid[j].push(this.isWalkable(i, j) ? 1 : 0);
 			}
 		}
 		return grid;

@@ -13,5 +13,7 @@ function Actor(params) {
 		light.position.set(0, 0, 1);
 		this.add(light);
 	}
+
+	this.position.set((game.world.map.w / 2)|0, (game.world.map.h / 2)|0, 1);
 }
 Actor.prototype = Object.create(THREE.Mesh.prototype);

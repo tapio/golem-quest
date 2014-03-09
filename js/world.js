@@ -34,6 +34,7 @@ World.prototype.rebuildScene = function() {
 	groundMat.specularMap.wrapS = groundMat.specularMap.wrapT = THREE.RepeatWrapping;
 	groundMat.specularMap.repeat.set(map.w / 4, map.h / 4);
 	var ground = new THREE.Mesh(groundPlane, groundMat);
+	ground.position.set(map.w / 2 - 0.5, map.h / 2 - 0.5, 0);
 	this.root.add(ground);
 
 	var rocks = [ "rock-01", "rock-02", "rock-03", "rock-04" ];
@@ -68,7 +69,7 @@ World.prototype.rebuildScene = function() {
 			if (tile == ROCK) model = randElem(rocks);
 			else if (tile == BUSH) model = randElem(bushes);
 			if (model) cache.loadModel("assets/models/" + model + "/" + model + ".js",
-				objectHandler(this.root, new THREE.Vector3(i - map.w / 2, j - map.h / 2, 1.0)));
+				objectHandler(this.root, new THREE.Vector3(i, j, 1.0)));
 		}
 	}
 
