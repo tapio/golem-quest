@@ -4,6 +4,8 @@ var OPEN = ".";
 var WALL = "#";
 var DIAG = "%";
 var TREE = "T";
+var ROCK = "o";
+var BUSH = "b";
 
 function Map(w, h, data) {
 	this.map = new Array(w * h);
