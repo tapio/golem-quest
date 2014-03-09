@@ -2,7 +2,7 @@
 
 function Game() {
 	this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-	this.camera.position.z = 10;
+	this.camera.position.z = 8;
 
 	this.world = new World();
 

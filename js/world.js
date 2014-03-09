@@ -35,8 +35,8 @@ World.prototype.rebuildScene = function() {
 	for (j = 0; j < map.h; ++j) {
 		for (i = 0; i < map.w; ++i) {
 			var tile = map.get(i, j);
-			var materialIndex = OPEN ? 0 : 1;
 			var isFloor = tile == OPEN;
+			var materialIndex = isFloor ? 0 : 1;
 			dummy.position.set(i - map.w / 2, j - map.h / 2, isFloor ? 0 : 0.5);
 			dummy.geometry = isFloor ? plane : cube;
 			THREE.GeometryUtils.merge(geometry, dummy, materialIndex);
