@@ -1,4 +1,6 @@
+"use strict";
 
+var cache = new Cache();
 var game = new Game();
 var clock = new THREE.Clock();
 

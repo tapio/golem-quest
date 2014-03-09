@@ -28,8 +28,8 @@ World.prototype.rebuildScene = function() {
 	var cube = new BlockGeometry(1, 1, 1);
 	var plane = new THREE.PlaneGeometry(1, 1);
 	var materials = [
-		new THREE.MeshPhongMaterial({ color: 0x005500 }),
-		new THREE.MeshPhongMaterial({ color: 0x550000 })
+		cache.getMaterial("grass-01"),
+		cache.getMaterial("rock-04")
 	];
 
 	for (j = 0; j < map.h; ++j) {
