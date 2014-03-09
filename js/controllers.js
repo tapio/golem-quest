@@ -1,5 +1,15 @@
 "use strict";
 
+// Gamepad support stuff
+navigator.getGamepads = navigator.webkitGetGamepads || navigator.mozGetGamepads || navigator.getGamepads;
+if (!!navigator.getGamepads) console.log("Gamepads are supported");
+else console.log("No gamepad support");
+window.addEventListener("gamepadconnected", function(gamepad) {
+	// This event listener is currently needed for Firefox
+	console.log("Gamepad connected:", gamepad);
+});
+
+
 var Controller = function() {
 	this.moveInput = new THREE.Vector2(0, 0);
 };
@@ -30,10 +40,10 @@ var KeyboardController = function(mapping) {
 	this.update = function(dt) {
 		this.moveInput.set(0, 0);
 
-		if (pressed[this.mapping.up]) this.moveInput.y = 1;
-		else if (pressed[this.mapping.down]) this.moveInput.y = 1;
 		if (pressed[this.mapping.left]) this.moveInput.x = -1;
 		else if (pressed[this.mapping.right]) this.moveInput.x = 1;
+		if (pressed[this.mapping.up]) this.moveInput.y = 1;
+		else if (pressed[this.mapping.down]) this.moveInput.y = -1;
 	};
 };
 KeyboardController.prototype = Object.create(Controller.prototype);
@@ -47,19 +57,18 @@ KeyboardController.DefaultMapping2 = { up: 87, down: 83, left: 65, right: 68 } /
 var GamepadController = function(index) {
 	Controller.call(this);
 	this.index = index;
-	navigator.getGamepads = navigator.webkitGetGamepads || navigator.mozGetGamepads || navigator.getGamepads;
 };
 GamepadController.prototype = Object.create(Controller.prototype);
 
 GamepadController.prototype.update = function(dt) {
-	if (!navigator.getGamepads) return;
-
 	var gamepads = navigator.getGamepads();
+	if (!gamepads) return;
+
 	if (this.index >= gamepads.length) return;
 
 	var gamepad = gamepads[this.index];
 	if (!gamepad) return;
 
-	this.moveInput.x = gamepad.axes[0];
-	this.moveInput.y = -gamepad.axes[1];
+	this.moveInput.x = Math.round(gamepad.axes[0]);
+	this.moveInput.y = -Math.round(gamepad.axes[1]);
 };

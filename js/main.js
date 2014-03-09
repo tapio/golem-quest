@@ -9,6 +9,11 @@ var pl = new Actor({ torch: true });
 pl.controller = new KeyboardController(KeyboardController.DefaultMapping1);
 game.addActor(pl);
 
+var pl2 = new Actor({ torch: true });
+pl2.controller = new GamepadController(0);
+game.addActor(pl2);
+
+
 function render() {
 	requestAnimationFrame(render);
 	var dt = clock.getDelta();
