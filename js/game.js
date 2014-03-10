@@ -45,9 +45,11 @@ Game.prototype.update = function(dt) {
 	}
 }
 
+function lerp(a, b, f) { return a + (b - a) * f; }
+
 Game.prototype.render = function(dt) {
-	this.camera.position.x = this.actors[0].position.x;
-	this.camera.position.y = this.actors[0].position.y;
+	this.camera.position.x = lerp(this.camera.position.x, this.actors[0].position.x, dt * 5);
+	this.camera.position.y = lerp(this.camera.position.y, this.actors[0].position.y, dt * 5);
 	this.world.update(dt);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
