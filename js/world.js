@@ -51,6 +51,7 @@ World.prototype.rebuildScene = function() {
 			var mesh = new THREE.Mesh(geometry, material);
 			mesh.position.copy(pos);
 			mesh.rotation.x = Math.PI / 2;
+			mesh.rotation.y = Math.PI * 2 * Math.random();
 
 			if (!def.noShadows) {
 				mesh.castShadow = true;
