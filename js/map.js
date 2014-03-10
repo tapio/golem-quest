@@ -92,6 +92,7 @@ function Map(w, h, data) {
 	};
 
 	this.isWalkable = function(x, y) {
+		if (x < 0 || x >= w || y < 0 || y >= h) return;
 		var c = this.map[y * w + x];
 		return c != WALL && c != ROCK && c != TREE;
 	};
