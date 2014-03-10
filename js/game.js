@@ -38,6 +38,15 @@ Game.prototype.addActor = function(actor) {
 	this.world.scene.add(actor);
 };
 
+Game.prototype.findActor = function(x, y) {
+	for (var i = 0; i < this.actors.length; ++i) {
+		var actor = this.actors[i];
+		if (distSq(x, y, actor.position.x, actor.position.y) < 0.2 * 0.2)
+			return actor;
+	}
+	return null;
+};
+
 Game.prototype.update = function(dt) {
 	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
@@ -48,7 +57,14 @@ Game.prototype.update = function(dt) {
 		if (controller.moveInput.x == 0 && controller.moveInput.y == 0) continue;
 		var newx = Math.round(actor.position.x + controller.moveInput.x);
 		var newy = Math.round(actor.position.y + controller.moveInput.y);
-		if (map.isWalkable(newx, newy))
+		var other = this.findActor(newx, newy);
+		if (other && other.visible) {
+			if (actor.faction != other.faction) {
+				--other.health;
+				if (other.health <= 0)
+					other.visible = false;
+			}
+		} else if (map.isWalkable(newx, newy))
 			actor.target = new THREE.Vector3(newx, newy, actor.position.z);
 	}
 }

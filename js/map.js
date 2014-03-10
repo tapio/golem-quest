@@ -73,11 +73,6 @@ function Map(w, h, data) {
 		floodFill(this, x, y, target, filler, skip);
 	};
 
-	function distSq(x1, y1, x2, y2) {
-		var dx = x2 - x1, dy = y2 - y1;
-		return dx * dx + dy * dy;
-	}
-
 	this.raycast = function(x1, y1, x2, y2, step) {
 		step = step || 0.5;
 		var angle = Math.atan2(y2 - y1, x2 - x1);

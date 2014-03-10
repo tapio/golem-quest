@@ -2,7 +2,7 @@
 
 function Actor(params) {
 	THREE.Mesh.call(this,
-		new THREE.CubeGeometry(0.85, 0.85, 0.85),
+		new THREE.CubeGeometry(0.75, 0.75, 0.85),
 		new THREE.MeshPhongMaterial({
 			color: params.monster ? 0xff2222 : 0x0000ff
 		})
@@ -16,5 +16,8 @@ function Actor(params) {
 
 	this.position.set((game.world.map.w / 2)|0, (game.world.map.h / 2)|0, 0.5 * 0.85);
 	this.target = null;
+
+	this.faction = params.monster ? -1 : 1;
+	this.health = 5;
 }
 Actor.prototype = Object.create(THREE.Mesh.prototype);

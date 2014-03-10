@@ -3,6 +3,11 @@ function lerp(a, b, f) { return a + (b - a) * f; }
 
 function lerp2d(a, b, f) { a.x = lerp(a.x, b.x, f); a.y = lerp(a.y, b.y, f); }
 
+function distSq(x1, y1, x2, y2) {
+	var dx = x2 - x1, dy = y2 - y1;
+	return dx * dx + dy * dy;
+}
+
 function randElem(arr) { return arr[(Math.random() * arr.length) | 0]; }
 
 function Anim(duration, autoStart) {
