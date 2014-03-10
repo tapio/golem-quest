@@ -72,3 +72,12 @@ GamepadController.prototype.update = function(dt) {
 	this.moveInput.x = Math.round(gamepad.axes[0]);
 	this.moveInput.y = -Math.round(gamepad.axes[1]);
 };
+
+
+//
+// AIController
+//
+var AIController = function() {
+	Controller.call(this);
+};
+AIController.prototype = Object.create(Controller.prototype);

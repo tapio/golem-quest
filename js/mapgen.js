@@ -20,5 +20,6 @@ MapGen.generateOverworld = function(seed) {
 				map.put(i, j, PILLAR);
 		}
 	}
+	map.updatePathFindingGrid();
 	return map;
 }

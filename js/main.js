@@ -31,4 +31,9 @@ window.setInterval(function() {
 	game.update(tick / 1000);
 }, tick);
 
+window.setInterval(function() {
+	for (var i = 0; i < game.actors.length; ++i)
+		game.actors[i].updateAI();
+}, tick * 10);
+
 render();
