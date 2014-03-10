@@ -11,6 +11,11 @@ function Map(w, h, data) {
 	this.map = new Array(w * h);
 	this.w = w;
 	this.h = h;
+	this.grid = new PF.Grid(this.w, this.h);
+	this.pathFinder = new PF.AStarFinder({
+		allowDiagonal: true,
+		heurestic: PF.Heuristic.euclidean
+	});
 
 	if (data && data.length && data instanceof Array) {
 		for (var j = 0; j < h; ++j) {
@@ -91,15 +96,18 @@ function Map(w, h, data) {
 		return c != WALL && c != ROCK && c != TREE;
 	};
 
-	this.getWalkableMatrix = function() {
-		var grid = new Array(h);
-		for (var j = 0; j < h; ++j) {
-			grid[j] = [];
-			for (var i = 0; i < w; ++i) {
-				grid[j].push(this.isWalkable(i, j) ? 1 : 0);
-			}
-		}
-		return grid;
+	this.updatePathFindingGrid = function() {
+		for (var j = 0; j < this.h; ++j)
+			for (var i = 0; i < this.w; ++i)
+				this.grid.setWalkableAt(i, j, this.isWalkable(i, j) ? 1 : 0);
+	};
+
+	this.getPath = function(startX, startY, goalX, goalY) {
+		var path = this.pathFinder.findPath(startX, startY, goalX, goalY, this.grid.clone());
+		var waypoints = [];
+		for (var i = 0; i < path.length; ++i)
+			waypoints.push({ x: path[i][0], y: path[i][1] });
+		return waypoints;
 	};
 
 }
