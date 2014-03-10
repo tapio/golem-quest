@@ -8,18 +8,25 @@ function Game() {
 
 	this.world = new World();
 
-	this.renderer = new THREE.WebGLRenderer({ antialias: true });
-	this.renderer.setSize(window.innerWidth, window.innerHeight);
-	document.body.appendChild(this.renderer.domElement);
-	window.addEventListener('resize', function() {
-		game.camera.aspect = window.innerWidth / window.innerHeight;
-		game.camera.updateProjectionMatrix();
-		game.renderer.setSize(window.innerWidth, window.innerHeight);
+	var self = this;
+	function resize() {
+		var w = window.innerWidth - 200, h = window.innerHeight;
+		self.camera.aspect = w / h;
+		self.camera.updateProjectionMatrix();
+		self.renderer.setSize(w, h);
+	}
+
+	this.renderer = new THREE.WebGLRenderer({
+		canvas: document.getElementById("canvas"),
+		antialias: true
 	});
+	resize();
+	document.getElementById("container").appendChild(this.renderer.domElement);
+	window.addEventListener("resize", resize);
 
 	this.stats = new Stats();
-	this.stats.domElement.style.position = 'absolute';
-	this.stats.domElement.style.bottom = '0px';
+	this.stats.domElement.style.position = "absolute";
+	this.stats.domElement.style.bottom = "0px";
 	document.body.appendChild(this.stats.domElement);
 }
 

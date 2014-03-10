@@ -10,8 +10,20 @@ body {
 #container { width: 100%; }
 
 canvas {
-	width: 100%;
+	position: absolute;
+	width: calc(100% - 200px);
 	height: 100%;
+	left: 200px;
+}
+
+#sidebar {
+	position: absolute;
+	width: 200px;
+	height: 100%;
+	background-color: #111;
+	padding: 5px;
+	font-family: monospace;
+	font-size: 14px;
 }
 
 #renderer-info {
@@ -35,3 +47,8 @@ canvas {
 	text-align: center;
 	z-index: 1000;
 }
+
+.health { color: red; }
+.mana { color: magenta; }
+.coins { color: gold; }
+.gems { color: green; }
