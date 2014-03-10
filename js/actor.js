@@ -4,7 +4,7 @@ function Actor(params) {
 	THREE.Mesh.call(this,
 		new THREE.CubeGeometry(0.85, 0.85, 0.85),
 		new THREE.MeshPhongMaterial({
-			color: 0x0000ff
+			color: params.monster ? 0xff2222 : 0x0000ff
 		})
 	);
 

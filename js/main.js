@@ -13,6 +13,12 @@ var pl2 = new Actor({ torch: true });
 pl2.controller = new GamepadController(0);
 game.addActor(pl2);
 
+for (var i = 0; i < 50; ++i) {
+	var monster = new Actor({ monster: true });
+	monster.position.x = (Math.random() * game.world.map.w)|0;
+	monster.position.y = (Math.random() * game.world.map.h)|0;
+	game.addActor(monster);
+}
 
 function render() {
 	requestAnimationFrame(render);
