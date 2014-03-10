@@ -51,16 +51,14 @@ Game.prototype.render = function(dt) {
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
 		if (actor.target === null) continue;
-		actor.position.y = lerp(actor.position.y, actor.target.y, dt * 15);
-		actor.position.y = lerp(actor.position.y, actor.target.y, dt * 15);
+		lerp2d(actor.position, actor.target, dt * 15);
 		if (actor.position.distanceToSquared(actor.target) < 0.001) {
 			actor.position.copy(actor.target);
 			actor.target = null;
 		}
 	}
 
-	this.camera.position.x = lerp(this.camera.position.x, this.actors[0].position.x, dt * 5);
-	this.camera.position.y = lerp(this.camera.position.y, this.actors[0].position.y, dt * 5);
+	lerp2d(this.camera.position, this.actors[0].position, dt * 5);
 	this.world.update(dt);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
