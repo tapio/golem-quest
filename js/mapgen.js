@@ -12,10 +12,12 @@ MapGen.generateOverworld = function(seed) {
 	for (j = 0; j < h; ++j) {
 		for (i = 0; i < w; ++i) {
 			var r = rnd.random();
-			if (r < 0.1)
+			if (r < 0.075)
 				map.put(i, j, ROCK);
-			else if (r < 0.4)
+			else if (r < 0.2)
 				map.put(i, j, BUSH);
+			else if (r < 0.21)
+				map.put(i, j, PILLAR);
 		}
 	}
 	return map;

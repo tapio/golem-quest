@@ -35,6 +35,7 @@ World.prototype.rebuildScene = function() {
 
 	var rocks = [ "rock-01", "rock-02", "rock-03", "rock-04" ];
 	var bushes = [ "fern-01", "fern-02" ];
+	var pillars = [ "obelisk-01", "obelisk-02", "pillar-broken-01", "pillar-broken-02" ];
 
 	function objectHandler(parent, pos, def) {
 		return function(geometry, materials) {
@@ -66,6 +67,7 @@ World.prototype.rebuildScene = function() {
 			var model = null;
 			if (tile == ROCK) model = randElem(rocks);
 			else if (tile == BUSH) model = randElem(bushes);
+			else if (tile == PILLAR) model = randElem(pillars);
 			if (model) cache.loadModel("assets/models/" + model + "/" + model + ".js",
 				objectHandler(this.root, new THREE.Vector3(i, j, 1.0)));
 		}
