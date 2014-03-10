@@ -21,7 +21,6 @@ function Game() {
 		antialias: true
 	});
 	resize();
-	document.getElementById("container").appendChild(this.renderer.domElement);
 	window.addEventListener("resize", resize);
 
 	this.rendererInfo = document.getElementById("renderer-info");
