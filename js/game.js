@@ -24,6 +24,10 @@ function Game() {
 }
 
 Game.prototype.addActor = function(actor) {
+	if (!this.actors.length) {
+		this.camera.position.x = actor.position.x;
+		this.camera.position.y = actor.position.y;
+	}
 	this.actors.push(actor);
 	this.world.scene.add(actor);
 };

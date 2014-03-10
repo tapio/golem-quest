@@ -50,6 +50,7 @@ World.prototype.rebuildScene = function() {
 
 			var mesh = new THREE.Mesh(geometry, material);
 			mesh.position.copy(pos);
+			mesh.position.z = 0.5 * (geometry.boundingBox.max.y - geometry.boundingBox.min.y) + 0.001;
 			mesh.rotation.x = Math.PI / 2;
 			mesh.rotation.y = Math.PI * 2 * Math.random();
 
