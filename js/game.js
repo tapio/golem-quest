@@ -24,9 +24,8 @@ function Game() {
 	document.getElementById("container").appendChild(this.renderer.domElement);
 	window.addEventListener("resize", resize);
 
+	this.rendererInfo = document.getElementById("renderer-info");
 	this.stats = new Stats();
-	this.stats.domElement.style.position = "absolute";
-	this.stats.domElement.style.bottom = "0px";
 	document.body.appendChild(this.stats.domElement);
 }
 
@@ -69,4 +68,16 @@ Game.prototype.render = function(dt) {
 	this.world.update(dt);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
+
+	var info = this.renderer.info;
+	var report = [
+		"Prog:", info.memory.programs,
+		"Geom:", info.memory.geometries,
+		"Tex:", info.memory.textures,
+		"Calls:", info.render.calls,
+		"Verts:", info.render.vertices,
+		"Faces:", info.render.faces,
+		"Pts:", info.render.points
+	];
+	this.rendererInfo.innerHTML = report.join(' ');
 };

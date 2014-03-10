@@ -26,18 +26,6 @@ canvas {
 	font-size: 14px;
 }
 
-#renderer-info {
-	position: absolute;
-	bottom: 0px;
-	left: 80px;
-	color: #f08;
-	text-align: left;
-	font-size: 10px;
-	line-height: 12px;
-	background-color: rgba(0, 0, 0, 0.33);
-	font-family: monospace;
-}
-
 #loading {
 	position: absolute;
 	top: 45%;
@@ -52,3 +40,20 @@ canvas {
 .mana { color: magenta; }
 .coins { color: gold; }
 .gems { color: green; }
+
+#renderer-info {
+	position: absolute;
+	bottom: 0px;
+	left: 80px;
+	color: #f08;
+	text-align: left;
+	font-size: 10px;
+	line-height: 12px;
+	background-color: rgba(0, 0, 0, 0.33);
+	font-family: monospace;
+}
+
+#stats {
+	position: absolute;
+	bottom: 0px;
+}
