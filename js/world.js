@@ -1,9 +1,5 @@
 "use strict";
 
-function randElem(arr) {
-	return arr[(Math.random() * arr.length) | 0];
-}
-
 function World() {
 	this.scene = new THREE.Scene();
 	this.map = MapGen.generateOverworld();

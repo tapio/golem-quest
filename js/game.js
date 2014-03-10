@@ -47,8 +47,6 @@ Game.prototype.update = function(dt) {
 	}
 }
 
-function lerp(a, b, f) { return a + (b - a) * f; }
-
 Game.prototype.render = function(dt) {
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
