@@ -9,6 +9,7 @@ function Game() {
 	this.roundTimer = 0;
 
 	this.world = new World();
+	this.hudScene = new THREE.Scene();
 
 	var self = this;
 	function resize() {
@@ -16,14 +17,31 @@ function Game() {
 		self.camera.aspect = w / h;
 		self.camera.updateProjectionMatrix();
 		self.renderer.setSize(w, h);
+		self.hudRenderer.setSize(w, h);
 	}
 
-	this.renderer = new THREE.WebGLRenderer({
-		canvas: document.getElementById("canvas"),
-		antialias: true
-	});
-	resize();
+	this.renderer = new THREE.WebGLRenderer({ antialias: true });
+	document.getElementById("container").appendChild(this.renderer.domElement);
+
+	this.hudRenderer = new THREE.CSS3DRenderer();
+	this.hudRenderer.domElement.className = ".canvas";
+	this.hudRenderer.domElement.getElementsByTagName("div")[0].className = ".canvas";
+	document.getElementById("container").appendChild(this.hudRenderer.domElement);
+
+	this.hudElems = [];
+	for (var i = 0; i < 3; ++i) {
+		var elem = document.createElement("div");
+		elem.className = "hud-elem";
+		var sprite = new THREE.CSS3DSprite(elem);
+		var scale = 0.02;
+		sprite.scale.set(scale, scale, scale);
+		document.body.appendChild(elem);
+		this.hudScene.add(sprite);
+		this.hudElems.push(sprite);
+	}
+
 	window.addEventListener("resize", resize);
+	resize();
 
 	this.rendererInfo = document.getElementById("renderer-info");
 	this.stats = new Stats();
@@ -69,6 +87,10 @@ Game.prototype.update = function() {
 					--other.health;
 					if (other.health <= 0)
 						other.visible = false;
+					var notif = this.hudElems[0];
+					notif.element.innerHTML = "Hit!";
+					notif.position.copy(other.position);
+					notif.position.z += 2;
 				}
 			} else if (map.isWalkable(newx, newy))
 				actor.target = new THREE.Vector3(newx, newy, actor.position.z);
@@ -96,6 +118,7 @@ Game.prototype.render = function(dt) {
 	lerp2d(this.camera.position, this.actors[0].position, dt * 5);
 	this.world.update(dt);
 	this.renderer.render(this.world.scene, this.camera);
+	this.hudRenderer.render(this.hudScene, this.camera);
 	this.stats.update();
 
 	var info = this.renderer.info;

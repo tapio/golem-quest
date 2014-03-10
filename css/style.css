@@ -9,7 +9,7 @@ body {
 
 #container { width: 100%; }
 
-canvas {
+canvas, .canvas {
 	position: absolute;
 	width: calc(100% - 200px);
 	height: 100%;
@@ -40,6 +40,12 @@ canvas {
 .mana { color: magenta; }
 .coins { color: gold; }
 .gems { color: green; }
+
+.hud-elem {
+	font-size: 20px;
+	color: red;
+	text-align: center;
+}
 
 #renderer-info {
 	position: absolute;
