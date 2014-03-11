@@ -1,4 +1,6 @@
 
+Element.prototype.prependChild = function(child) { this.insertBefore(child, this.firstChild); };
+
 function lerp(a, b, f) { return a + (b - a) * f; }
 
 function lerp2d(a, b, f) { a.x = lerp(a.x, b.x, f); a.y = lerp(a.y, b.y, f); }

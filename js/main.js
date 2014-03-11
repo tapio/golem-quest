@@ -1,16 +1,19 @@
 "use strict";
 
 var cache = new Cache();
+var ui = new UI();
 var game = new Game();
 var clock = new THREE.Clock();
 
 var pl = new Actor({ torch: true });
 pl.controller = new KeyboardController(KeyboardController.DefaultMapping1);
 game.addActor(pl);
+ui.track(pl);
 
 //var pl2 = new Actor({ torch: true });
 //pl2.controller = new GamepadController(0);
 //game.addActor(pl2);
+//ui.track(pl2);
 
 for (var i = 0; i < 50; ++i) {
 	var monster = new Actor({ monster: true });
@@ -26,6 +29,7 @@ function render() {
 
 	game.update();
 	game.render(dt);
+	ui.render();
 };
 
 render();
