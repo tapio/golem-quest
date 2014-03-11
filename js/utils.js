@@ -1,6 +1,8 @@
 
 Element.prototype.prependChild = function(child) { this.insertBefore(child, this.firstChild); };
 
+function dom(selector) { return document.querySelector(selector); }
+
 function lerp(a, b, f) { return a + (b - a) * f; }
 
 function lerp2d(a, b, f) { a.x = lerp(a.x, b.x, f); a.y = lerp(a.y, b.y, f); }
@@ -12,7 +14,14 @@ function distSq(x1, y1, x2, y2) {
 
 function randElem(arr) { return arr[(Math.random() * arr.length) | 0]; }
 
-function Anim(duration, autoStart) {
+function buildString(char, amount) {
+	var ret = "";
+	for (var i = 0; i < amount; ++i)
+		ret += char;
+	return ret;
+}
+
+/*function Anim(duration, autoStart) {
 	this.duration = duration;
 	this.timestamp = null;
 
@@ -39,4 +48,4 @@ function Anim(duration, autoStart) {
 	};
 
 	if (autoStart) start();
-}
+}*/

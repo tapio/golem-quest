@@ -30,6 +30,13 @@ UI.prototype.inWorldMsg = function(msg, position) {
 };
 
 UI.prototype.render = function() {
+	// Sidebar
+	for (var i = 0; i < this.players.length; ++i) {
+		var pl = this.players[i];
+		dom("#player-" + (i+1) + " .health").innerHTML = buildString("♥", pl.health);
+	}
+
+	// In-world hud
 	this.renderer.render(this.scene, game.camera);
 
 	// Reap faded elements
