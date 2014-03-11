@@ -13,7 +13,7 @@ function Game() {
 
 	var self = this;
 	function resize() {
-		var w = window.innerWidth - 200, h = window.innerHeight;
+		var w = window.innerWidth, h = window.innerHeight;
 		self.camera.aspect = w / h;
 		self.camera.updateProjectionMatrix();
 		self.renderer.setSize(w, h);
@@ -24,8 +24,6 @@ function Game() {
 	document.getElementById("container").appendChild(this.renderer.domElement);
 
 	this.hudRenderer = new THREE.CSS3DRenderer();
-	this.hudRenderer.domElement.className = ".canvas";
-	this.hudRenderer.domElement.getElementsByTagName("div")[0].className = ".canvas";
 	document.getElementById("container").appendChild(this.hudRenderer.domElement);
 
 	this.hudElems = [];
