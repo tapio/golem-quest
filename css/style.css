@@ -23,7 +23,6 @@ canvas {
 	padding: 5px;
 	font-family: monospace;
 	font-size: 14px;
-	z-index: 100;
 }
 
 #loading {
