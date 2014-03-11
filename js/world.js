@@ -22,9 +22,9 @@ World.prototype.rebuildScene = function() {
 
 	// Ground
 	var groundPlane = new THREE.PlaneGeometry(map.w, map.h);
-	var groundMat = cache.getMaterial("grass-01");
+	var groundMat = cache.getMaterial(randElem([ "grass-01", "grass-02", "grass-03" ]));
 	groundMat.map.wrapS = groundMat.map.wrapT = THREE.RepeatWrapping;
-	groundMat.map.repeat.set(map.w / 2, map.h / 2);
+	groundMat.map.repeat.set(map.w / 3, map.h / 3);
 	groundMat.normalMap.wrapS = groundMat.normalMap.wrapT = THREE.RepeatWrapping;
 	groundMat.normalMap.repeat.set(map.w / 4, map.h / 4);
 	groundMat.specularMap.wrapS = groundMat.specularMap.wrapT = THREE.RepeatWrapping;

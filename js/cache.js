@@ -49,7 +49,7 @@ function Cache() {
 			ambient: 0xffffff,
 			diffuse: 0xffffff,
 			specular: 0xffffff,
-			shininess: 30,
+			shininess: 20,
 			perPixel: true,
 			map: THREE.ImageUtils.loadTexture(texturePath + name + ".jpg"),
 			specularMap: THREE.ImageUtils.loadTexture(texturePath  + "specular/" + name + ".jpg"),
