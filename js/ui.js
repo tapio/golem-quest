@@ -23,7 +23,7 @@ UI.prototype.inWorldMsg = function(msg, position) {
 	var scale = 0.02;
 	sprite.scale.set(scale, scale, scale);
 	sprite.position.set(position.x, position.y, 3);
-	sprite.timeout = Date.now() + 5000;
+	sprite.timeout = Date.now() + 3000;
 
 	this.scene.add(sprite);
 	this.elems.push(sprite);

@@ -54,9 +54,12 @@ canvas {
 	font-size: 20px;
 	color: red;
 	text-align: center;
-	-webkit-animation-duration: 3s;
-	animation-duration: 3s;
+	opacity: 0;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-timing-function: linear;
 	-webkit-animation-name: fadeout;
+	animation-duration: 2s;
+	animation-timing-function: linear;
 	animation-name: fadeout;
 }
 
