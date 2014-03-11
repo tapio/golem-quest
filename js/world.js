@@ -4,7 +4,7 @@ function World() {
 	this.scene = new THREE.Scene();
 	this.map = MapGen.generateOverworld();
 	this.root = null;
-	this.scene.add(new THREE.AmbientLight(0x404040));
+	this.scene.add(new THREE.AmbientLight(0x222222));
 
 	this.rebuildScene();
 };
