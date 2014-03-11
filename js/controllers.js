@@ -14,7 +14,9 @@ var Controller = function() {
 	this.moveInput = new THREE.Vector2(0, 0);
 };
 
-Controller.prototype.update = function(dt) { };
+Controller.prototype.poll = function() {
+	return this.moveInput.x != 0 || this.moveInput.y != 0;
+};
 
 
 //
@@ -37,13 +39,15 @@ var KeyboardController = function(mapping) {
 	document.addEventListener('keydown', onKeyDown, false);
 	document.addEventListener('keyup', onKeyUp, false);
 
-	this.update = function(dt) {
+	this.poll = function() {
 		this.moveInput.set(0, 0);
 
 		if (pressed[this.mapping.left]) this.moveInput.x = -1;
 		else if (pressed[this.mapping.right]) this.moveInput.x = 1;
 		if (pressed[this.mapping.up]) this.moveInput.y = 1;
 		else if (pressed[this.mapping.down]) this.moveInput.y = -1;
+
+		return Controller.prototype.poll.call(this);
 	};
 };
 KeyboardController.prototype = Object.create(Controller.prototype);
@@ -60,7 +64,7 @@ var GamepadController = function(index) {
 };
 GamepadController.prototype = Object.create(Controller.prototype);
 
-GamepadController.prototype.update = function(dt) {
+GamepadController.prototype.poll = function() {
 	var gamepads = navigator.getGamepads();
 	if (!gamepads) return;
 
@@ -71,13 +75,21 @@ GamepadController.prototype.update = function(dt) {
 
 	this.moveInput.x = Math.round(gamepad.axes[0]);
 	this.moveInput.y = -Math.round(gamepad.axes[1]);
+
+	return Controller.prototype.poll.call(this);
 };
 
 
 //
 // AIController
 //
-var AIController = function() {
+var AIController = function(actor) {
 	Controller.call(this);
+	this.actor = actor;
 };
 AIController.prototype = Object.create(Controller.prototype);
+
+AIController.prototype.poll = function() {
+	this.actor.runAI();
+	return true;
+}

@@ -9,9 +9,9 @@ var pl = new Actor({ torch: true });
 pl.controller = new KeyboardController(KeyboardController.DefaultMapping1);
 game.addActor(pl);
 
-var pl2 = new Actor({ torch: true });
-pl2.controller = new GamepadController(0);
-game.addActor(pl2);
+//var pl2 = new Actor({ torch: true });
+//pl2.controller = new GamepadController(0);
+//game.addActor(pl2);
 
 for (var i = 0; i < 50; ++i) {
 	var monster = new Actor({ monster: true });
@@ -24,16 +24,12 @@ function render() {
 	requestAnimationFrame(render);
 	var dt = clock.getDelta();
 	if (dt > 0.05) dt = 0.05;
+
 	game.render(dt);
 };
 
 window.setInterval(function() {
-	game.update(tick / 1000);
+	game.update();
 }, tick);
-
-window.setInterval(function() {
-	for (var i = 0; i < game.actors.length; ++i)
-		game.actors[i].updateAI();
-}, tick * 10);
 
 render();

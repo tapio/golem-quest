@@ -16,13 +16,14 @@ function Actor(params) {
 
 	this.position.set((game.world.map.w / 2)|0, (game.world.map.h / 2)|0, 0.5 * 0.85);
 	this.target = null;
+	this.done = false;
 
 	this.ai = !params.monster ? null : {
 		waypoints: null,
 		activated: false
 	};
 
-	this.controller = params.monster ? new AIController() : null;
+	this.controller = params.monster ? new AIController(this) : null;
 
 	this.faction = params.monster ? -1 : 1;
 	this.health = 5;
@@ -30,7 +31,7 @@ function Actor(params) {
 Actor.prototype = Object.create(THREE.Mesh.prototype);
 
 
-Actor.prototype.updateAI = function() {
+Actor.prototype.runAI = function() {
 	if (this.health <= 0 || !this.ai) return;
 
 	var target = game.actors[0];

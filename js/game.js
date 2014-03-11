@@ -5,6 +5,7 @@ function Game() {
 	this.camera.position.z = 7;
 
 	this.actors = [];
+	this.round = 1;
 
 	this.world = new World();
 
@@ -46,26 +47,35 @@ Game.prototype.findActor = function(x, y) {
 	return null;
 };
 
-Game.prototype.update = function(dt) {
+Game.prototype.update = function() {
 	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
+		if (actor.done) continue;
+
 		var controller = actor.controller;
-		if (!controller || actor.target !== null) continue;
-		controller.update(dt);
-		if (controller.moveInput.x == 0 && controller.moveInput.y == 0) continue;
-		var newx = Math.round(actor.position.x + controller.moveInput.x);
-		var newy = Math.round(actor.position.y + controller.moveInput.y);
-		var other = this.findActor(newx, newy);
-		if (other && other.visible) {
-			if (actor.faction != other.faction) {
-				--other.health;
-				if (other.health <= 0)
-					other.visible = false;
-			}
-		} else if (map.isWalkable(newx, newy))
-			actor.target = new THREE.Vector3(newx, newy, actor.position.z);
+		if (!controller) continue;
+
+		if (controller.poll()) {
+			actor.done = true;
+			var newx = Math.round(actor.position.x + controller.moveInput.x);
+			var newy = Math.round(actor.position.y + controller.moveInput.y);
+			var other = this.findActor(newx, newy);
+			if (other && other.visible) {
+				if (actor.faction != other.faction) {
+					--other.health;
+					if (other.health <= 0)
+						other.visible = false;
+				}
+			} else if (map.isWalkable(newx, newy))
+				actor.target = new THREE.Vector3(newx, newy, actor.position.z);
+		}
+		else return;
 	}
+	// If we got here, everybody has had their turn
+	for (var i = 0; i < this.actors.length; ++i)
+		this.actors[i].done = false;
+	++this.round;
 }
 
 Game.prototype.render = function(dt) {
