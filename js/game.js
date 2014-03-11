@@ -6,6 +6,7 @@ function Game() {
 
 	this.actors = [];
 	this.round = 1;
+	this.roundTimer = 0;
 
 	this.world = new World();
 
@@ -48,6 +49,8 @@ Game.prototype.findActor = function(x, y) {
 };
 
 Game.prototype.update = function() {
+	if (Date.now() < this.roundTimer)
+		return;
 	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
@@ -76,6 +79,7 @@ Game.prototype.update = function() {
 	for (var i = 0; i < this.actors.length; ++i)
 		this.actors[i].done = false;
 	++this.round;
+	this.roundTimer = Date.now() + 200;
 }
 
 Game.prototype.render = function(dt) {

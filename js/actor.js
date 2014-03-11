@@ -37,7 +37,7 @@ Actor.prototype.runAI = function() {
 	var target = game.actors[0];
 	if (target.health <= 0) return;
 
-	var v1 = new THREE.Vector3();
+	var v1 = new THREE.Vector2();
 
 	// Activate monsters
 	if (!this.ai.activated && distSq(this.position.x, this.position.y, target.position.x, target.position.y) < 10 * 10) {
@@ -51,9 +51,8 @@ Actor.prototype.runAI = function() {
 			target.position.x|0, target.position.y|0,
 			game.world.map.grid.clone());
 		this.ai.waypoints = [];
-		//path = PF.Util.smoothenPath(game.world.map.grid, path);
 		for (var j = 1; j < path.length; ++j) {
-			v1.set(path[j][0], path[j][1], this.position.z);
+			v1.set(path[j][0], path[j][1]);
 			this.ai.waypoints.push(v1.clone());
 		}
 	}
@@ -64,7 +63,8 @@ Actor.prototype.runAI = function() {
 			this.ai.waypoints = null;
 		} else if (!this.target) {
 			// Move on to the next waypoint
-			this.target = this.ai.waypoints[0];
+			v1.set(this.position.x, this.position.y);
+			this.controller.moveInput.subVectors(this.ai.waypoints[0], v1);
 			this.ai.waypoints.splice(0, 1);
 		}
 	}
