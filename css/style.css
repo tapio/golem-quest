@@ -35,6 +35,10 @@ canvas {
 	z-index: 1000;
 }
 
+.bar {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
 .health { color: red; }
 .mana { color: magenta; }
 .coins { color: gold; }
