@@ -7,6 +7,7 @@ function Game() {
 	this.actors = [];
 	this.round = 1;
 	this.roundTimer = 0;
+	this.over = false;
 
 	this.world = new World();
 
@@ -49,7 +50,7 @@ Game.prototype.findActor = function(x, y) {
 };
 
 Game.prototype.update = function() {
-	if (Date.now() < this.roundTimer)
+	if (Date.now() < this.roundTimer || this.over)
 		return;
 	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
@@ -70,6 +71,10 @@ Game.prototype.update = function() {
 					if (other.health <= 0) {
 						other.visible = false;
 						ui.inWorldMsg("Kill!", other.position);
+						if (other.faction == FACTION.PLAYER) {
+							document.getElementById("deathscreen").style.display = "block";
+							this.over = true;
+						}
 					} else
 						ui.inWorldMsg("Hit!", other.position);
 				}

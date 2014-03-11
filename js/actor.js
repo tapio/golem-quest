@@ -1,5 +1,7 @@
 "use strict";
 
+var FACTION = { PLAYER: 1, MONSTER: -1 };
+
 function Actor(params) {
 	THREE.Mesh.call(this,
 		new THREE.CubeGeometry(0.75, 0.75, 0.85),
@@ -25,7 +27,7 @@ function Actor(params) {
 
 	this.controller = params.monster ? new AIController(this) : null;
 
-	this.faction = params.monster ? -1 : 1;
+	this.faction = params.monster ? FACTION.MONSTER : FACTION.PLAYER;
 	this.health = 5;
 }
 Actor.prototype = Object.create(THREE.Mesh.prototype);
