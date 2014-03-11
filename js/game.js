@@ -43,7 +43,9 @@ Game.prototype.addActor = function(actor) {
 Game.prototype.findActor = function(x, y) {
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
-		if (distSq(x, y, actor.position.x, actor.position.y) < 0.2 * 0.2)
+		var testx = actor.target ? actor.target.x : actor.position.x;
+		var testy = actor.target ? actor.target.y : actor.position.y;
+		if (distSq(x, y, testx, testy) < 0.2 * 0.2)
 			return actor;
 	}
 	return null;
