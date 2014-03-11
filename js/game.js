@@ -104,7 +104,6 @@ Game.prototype.render = function(dt) {
 	}
 
 	lerp2d(this.camera.position, this.actors[0].position, dt * 5);
-	this.world.update(dt);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
 

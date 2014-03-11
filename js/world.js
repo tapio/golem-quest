@@ -9,11 +9,6 @@ function World() {
 	this.rebuildScene();
 };
 
-World.prototype.update = function(dt) {
-	
-};
-
-
 World.prototype.rebuildScene = function() {
 	if (this.root) this.scene.remove(this.root);
 	this.root = new THREE.Object3D();
