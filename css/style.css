@@ -40,10 +40,24 @@ canvas {
 .coins { color: gold; }
 .gems { color: green; }
 
+@-webkit-keyframes fadeout {
+	from { opacity: 1 }
+	to { opacity: 0 }
+}
+
+@keyframes fadeout {
+	from { opacity: 1 }
+	to { opacity: 0 }
+}
+
 .hud-elem {
 	font-size: 20px;
 	color: red;
 	text-align: center;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+	-webkit-animation-name: fadeout;
+	animation-name: fadeout;
 }
 
 #deathscreen {
