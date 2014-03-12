@@ -32,25 +32,30 @@ function Actor(params) {
 }
 Actor.prototype = Object.create(THREE.Mesh.prototype);
 
+Actor.prototype.getPosition = function() {
+	return this.target ? this.target : this.position;
+}
 
 Actor.prototype.runAI = function() {
-	if (this.health <= 0 || !this.ai) return;
+	if (this.health <= 0 || !this.ai || this.target) return;
 
 	var target = game.actors[0];
 	if (target.health <= 0) return;
+	var targetPos = target.getPosition();
 
 	var v1 = new THREE.Vector2();
+	this.controller.moveInput.set(0, 0);
 
 	// Activate monsters
-	if (!this.ai.activated && distSq(this.position.x, this.position.y, target.position.x, target.position.y) < 10 * 10) {
+	if (!this.ai.activated && distSq(this.position.x, this.position.y, targetPos.x, targetPos.y) < 10 * 10) {
 		this.ai.activated = true;
 	}
 
 	// Update path
 	if (this.ai.activated) {
 		var path = game.world.map.pathFinder.findPath(
-			this.position.x|0, this.position.y|0,
-			target.position.x|0, target.position.y|0,
+			Math.round(this.position.x), Math.round(this.position.y),
+			Math.round(targetPos.x), Math.round(targetPos.y),
 			game.world.map.grid.clone());
 		this.ai.waypoints = [];
 		for (var j = 1; j < path.length; ++j) {
@@ -63,7 +68,7 @@ Actor.prototype.runAI = function() {
 	if (this.ai.waypoints) {
 		if (!this.ai.waypoints.length) {
 			this.ai.waypoints = null;
-		} else if (!this.target) {
+		} else {
 			// Move on to the next waypoint
 			v1.set(this.position.x, this.position.y);
 			this.controller.moveInput.subVectors(this.ai.waypoints[0], v1);

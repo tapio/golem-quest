@@ -97,7 +97,7 @@ Game.prototype.render = function(dt) {
 		var actor = this.actors[i];
 		if (actor.target === null) continue;
 		lerp2d(actor.position, actor.target, dt * 15);
-		if (actor.position.distanceToSquared(actor.target) < 0.001) {
+		if (actor.position.distanceToSquared(actor.target) < 0.01) {
 			actor.position.copy(actor.target);
 			actor.target = null;
 		}
