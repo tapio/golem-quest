@@ -110,18 +110,7 @@ Game.prototype.update = function() {
 			// Attack?
 			var other = this.findActor(newx, newy);
 			if (other) {
-				if (actor.faction != other.faction) {
-					--other.health;
-					if (other.health <= 0) {
-						ui.inWorldMsg("Kill!", other.getPosition());
-						if (other.faction == FACTION.PLAYER) {
-							document.getElementById("deathscreen").style.display = "block";
-							this.over = true;
-						}
-						this.removeActor(other);
-					} else
-						ui.inWorldMsg("Hit!", other.getPosition());
-				}
+				actor.fight(other);
 				continue;
 			}
 			// Pick up item?

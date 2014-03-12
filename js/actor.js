@@ -45,6 +45,25 @@ Actor.prototype.getPosition = function() {
 	return this.target ? this.target : this.position;
 }
 
+Actor.prototype.fight = function(other) {
+	if (this.faction == other.faction) return;
+	var maxDice = 10;
+	var dice1 = randInt(1, maxDice);
+	var dice2 = randInt(1, maxDice);
+	if (dice1 == maxDice || this.attack + dice1 >= other.defense + dice2) {
+		--other.health;
+		if (other.health <= 0) {
+			ui.inWorldMsg("Killed!", other.getPosition());
+			if (other.faction == FACTION.PLAYER) {
+				document.getElementById("deathscreen").style.display = "block";
+				game.over = true;
+			}
+			game.removeActor(other);
+		} else
+			ui.inWorldMsg("-1", other.getPosition());
+	} else ui.inWorldMsg("Miss!", other.getPosition());
+};
+
 Actor.prototype.runAI = function() {
 	this.controller.moveInput.set(0, 0);
 	if (this.health <= 0 || !this.ai || this.target) return;
