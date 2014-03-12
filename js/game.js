@@ -94,6 +94,8 @@ Game.prototype.update = function() {
 }
 
 Game.prototype.render = function(dt) {
+	if (!this.actors.length) return;
+
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
 		if (actor.target === null) continue;
