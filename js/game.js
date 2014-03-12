@@ -5,6 +5,7 @@ function Game() {
 	this.camera.position.z = 7;
 
 	this.actors = [];
+	this.players = [];
 	this.round = 1;
 	this.roundTimer = 0;
 	this.over = false;
@@ -32,9 +33,12 @@ function Game() {
 }
 
 Game.prototype.addActor = function(actor) {
-	if (!this.actors.length) {
-		this.camera.position.x = actor.position.x;
-		this.camera.position.y = actor.position.y;
+	if (!actor.ai) {
+		if (!this.players.length) {
+			this.camera.position.x = actor.position.x;
+			this.camera.position.y = actor.position.y;
+		}
+		this.players.push(actor);
 	}
 	this.actors.push(actor);
 	this.world.scene.add(actor);
@@ -52,7 +56,7 @@ Game.prototype.findActor = function(x, y) {
 };
 
 Game.prototype.update = function() {
-	if (Date.now() < this.roundTimer || this.over)
+	if (Date.now() < this.roundTimer || this.over || !this.players.length)
 		return;
 	var map = this.world.map;
 	for (var i = 0; i < this.actors.length; ++i) {
@@ -94,7 +98,7 @@ Game.prototype.update = function() {
 }
 
 Game.prototype.render = function(dt) {
-	if (!this.actors.length) return;
+	if (!this.players.length) return;
 
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
@@ -106,7 +110,7 @@ Game.prototype.render = function(dt) {
 		}
 	}
 
-	lerp2d(this.camera.position, this.actors[0].position, dt * 5);
+	lerp2d(this.camera.position, this.players[0].position, dt * 5);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
 

@@ -54,7 +54,7 @@ Actor.prototype.getPosition = function() {
 Actor.prototype.runAI = function() {
 	if (this.health <= 0 || !this.ai || this.target) return;
 
-	var target = game.actors[0];
+	var target = game.players[0];
 	if (target.health <= 0) return;
 	var targetPos = target.getPosition();
 
