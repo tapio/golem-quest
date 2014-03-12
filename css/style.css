@@ -15,16 +15,6 @@ canvas {
 	height: 100%;
 }
 
-#sidebar {
-	position: absolute;
-	width: 200px;
-	height: 100%;
-	background-color: rgba(10, 10, 10, 0.75);
-	padding: 5px;
-	font-family: monospace;
-	font-size: 14px;
-}
-
 #loading {
 	position: absolute;
 	top: 45%;
@@ -33,6 +23,16 @@ canvas {
 	font-size: 2.8em;
 	text-align: center;
 	z-index: 1000;
+}
+
+#sidebar {
+	position: absolute;
+	width: 200px;
+	height: 100%;
+	background-color: rgba(10, 10, 10, 0.75);
+	padding: 5px;
+	font-family: monospace;
+	font-size: 14px;
 }
 
 .bar {

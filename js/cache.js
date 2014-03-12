@@ -6,12 +6,7 @@ function Cache() {
 	this.materials = {};
 	var self = this;
 	var loader = new THREE.JSONLoader(true);
-	loader.statusDomElement.style.display = "none";
-	loader.statusDomElement.style.left = "0px";
-	loader.statusDomElement.style.fontSize = "1.8em";
-	loader.statusDomElement.style.width = "auto";
-	loader.statusDomElement.style.color = "#c00";
-	document.body.appendChild(loader.statusDomElement);
+	loader.statusDomElement = dom("#loading");
 	var modelsPending = 0;
 
 	this.loadModel = function(path, callback, texturePath) {
@@ -27,8 +22,10 @@ function Cache() {
 				self.models[path] = geometry;
 				self.modelMaterials[path] = materials;
 				modelsPending--;
-				if (modelsPending === 0)
-					loader.statusDomElement.style.display = "none";
+				window.setTimeout(function() {
+					if (modelsPending === 0)
+						loader.statusDomElement.style.display = "none";
+				}, 1000);
 			}, texturePath);
 		} else if (m instanceof Array) { // Pending
 			m.push(callback);
