@@ -27,23 +27,15 @@ function Actor(params) {
 	this.faction = params.monster ? FACTION.MONSTER : FACTION.PLAYER;
 	this.health = params.monster ? 2 : 8;
 
-	if (!params.model) {
-		this.geometry = new THREE.CubeGeometry(0.75, 0.75, 0.85);
-		this.material = new THREE.MeshPhongMaterial({
-			color: params.monster ? 0xff2222 : 0x0000ff
-		})
-		game.addActor(this);
-	} else {
-		var self = this;
-		cache.loadModel("assets/models/" + params.model + "/" + params.model + ".js", function(geometry, materials) {
-			if (!geometry.boundingBox) geometry.computeBoundingBox();
-			geometry.dynamic = false;
-			self.geometry = geometry;
-			self.material = materials.length > 1 ? new THREE.MeshFaceMaterial(materials) : materials[0];
-			self.position.z = 0.5 * (geometry.boundingBox.max.y - geometry.boundingBox.min.y) + 0.001;
-			game.addActor(self);
-		});
-	}
+	var self = this;
+	cache.loadModel("assets/models/" + params.model + "/" + params.model + ".js", function(geometry, materials) {
+		if (!geometry.boundingBox) geometry.computeBoundingBox();
+		geometry.dynamic = false;
+		self.geometry = geometry;
+		self.material = materials.length > 1 ? new THREE.MeshFaceMaterial(materials) : materials[0];
+		self.position.z = 0.5 * (geometry.boundingBox.max.y - geometry.boundingBox.min.y) + 0.001;
+		game.addActor(self);
+	});
 }
 Actor.prototype = Object.create(THREE.Mesh.prototype);
 
