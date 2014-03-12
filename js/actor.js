@@ -6,7 +6,7 @@ function Actor(params) {
 	THREE.Mesh.call(this);
 
 	if (params.torch) {
-		var light = new THREE.PointLight(0xffff88, 1, 20);
+		var light = new THREE.PointLight(0xffffcc, 1, 20);
 		light.position.set(0, 0, 1);
 		this.add(light);
 	}
@@ -25,7 +25,7 @@ function Actor(params) {
 	this.controller = params.monster ? new AIController(this) : null;
 
 	this.faction = params.monster ? FACTION.MONSTER : FACTION.PLAYER;
-	this.health = 5;
+	this.health = params.monster ? 2 : 8;
 
 	if (!params.model) {
 		this.geometry = new THREE.CubeGeometry(0.75, 0.75, 0.85);
