@@ -1,4 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Eagle+Lake);
+
 body {
+	font-family: 'Eagle Lake', cursive;
 	color: #ddd;
 	background-color: #111;
 	margin: 0px;
@@ -20,7 +23,7 @@ canvas {
 	top: 45%;
 	width: 100%;
 	color: #c00;
-	font-size: 2.8em;
+	font-size: 2em;
 	text-align: center;
 	z-index: 1000;
 }
