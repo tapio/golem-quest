@@ -58,6 +58,7 @@ canvas {
 	font-size: 20px;
 	color: red;
 	text-align: center;
+	text-shadow: 0px 0px 5px #000000;
 	opacity: 0;
 	-webkit-animation-duration: 2s;
 	-webkit-animation-timing-function: linear;

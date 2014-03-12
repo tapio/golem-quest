@@ -55,9 +55,8 @@ Game.prototype.removeActor = function(actor) {
 Game.prototype.findActor = function(x, y) {
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
-		var testx = actor.target ? actor.target.x : actor.position.x;
-		var testy = actor.target ? actor.target.y : actor.position.y;
-		if (distSq(x, y, testx, testy) < 0.2 * 0.2)
+		var pos = actor.getPosition();
+		if (distSq(x, y, pos.x, pos.y) < 0.2 * 0.2)
 			return actor;
 	}
 	return null;
@@ -84,14 +83,14 @@ Game.prototype.update = function() {
 				if (actor.faction != other.faction) {
 					--other.health;
 					if (other.health <= 0) {
-						ui.inWorldMsg("Kill!", other.position);
+						ui.inWorldMsg("Kill!", other.getPosition());
 						if (other.faction == FACTION.PLAYER) {
 							document.getElementById("deathscreen").style.display = "block";
 							this.over = true;
 						}
 						this.removeActor(other);
 					} else
-						ui.inWorldMsg("Hit!", other.position);
+						ui.inWorldMsg("Hit!", other.getPosition());
 				}
 			} else if (map.isWalkable(newx, newy))
 				actor.target = new THREE.Vector3(newx, newy, actor.position.z);

@@ -20,9 +20,9 @@ UI.prototype.inWorldMsg = function(msg, position) {
 	document.body.appendChild(elem);
 
 	var sprite = new THREE.CSS3DSprite(elem);
-	var scale = 0.02;
+	var scale = 0.02, r = 0.2;
 	sprite.scale.set(scale, scale, scale);
-	sprite.position.set(position.x, position.y, 3);
+	sprite.position.set(position.x - r + 2 * Math.random() * r, position.y - 2 * Math.random() * r, 2.5);
 	sprite.timeout = Date.now() + 3000;
 
 	this.scene.add(sprite);
