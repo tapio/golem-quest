@@ -14,6 +14,8 @@ function distSq(x1, y1, x2, y2) {
 
 function randElem(arr) { return arr[(Math.random() * arr.length) | 0]; }
 
+function removeElem(arr, elem) { arr.splice(arr.indexOf(elem), 1); }
+
 function buildString(char, amount) {
 	var ret = "";
 	for (var i = 0; i < amount; ++i)

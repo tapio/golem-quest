@@ -52,14 +52,14 @@ Actor.prototype.getPosition = function() {
 }
 
 Actor.prototype.runAI = function() {
+	this.controller.moveInput.set(0, 0);
 	if (this.health <= 0 || !this.ai || this.target) return;
 
 	var target = game.players[0];
-	if (target.health <= 0) return;
+	if (!target || target.health <= 0) return;
 	var targetPos = target.getPosition();
 
 	var v1 = new THREE.Vector2();
-	this.controller.moveInput.set(0, 0);
 
 	// Activate monsters
 	if (!this.ai.activated && distSq(this.position.x, this.position.y, targetPos.x, targetPos.y) < 10 * 10) {

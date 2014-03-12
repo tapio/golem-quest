@@ -45,6 +45,13 @@ Game.prototype.addActor = function(actor) {
 	this.world.scene.add(actor);
 };
 
+Game.prototype.removeActor = function(actor) {
+	if (!actor.ai)
+		removeElem(this.players, actor);
+	this.world.scene.remove(actor);
+	removeElem(this.actors, actor);
+}
+
 Game.prototype.findActor = function(x, y) {
 	for (var i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
@@ -77,12 +84,12 @@ Game.prototype.update = function() {
 				if (actor.faction != other.faction) {
 					--other.health;
 					if (other.health <= 0) {
-						other.visible = false;
 						ui.inWorldMsg("Kill!", other.position);
 						if (other.faction == FACTION.PLAYER) {
 							document.getElementById("deathscreen").style.display = "block";
 							this.over = true;
 						}
+						this.removeActor(other);
 					} else
 						ui.inWorldMsg("Hit!", other.position);
 				}
