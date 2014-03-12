@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Eagle+Lake);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
 body {
 	font-family: 'Eagle Lake', cursive;
@@ -34,7 +35,7 @@ canvas {
 	height: 100%;
 	background-color: rgba(10, 10, 10, 0.75);
 	padding: 5px;
-	font-family: monospace;
+	font-family: 'Droid Sans Mono', monospace;
 	font-size: 14px;
 }
 
