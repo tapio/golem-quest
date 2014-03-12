@@ -3,6 +3,7 @@
 function Game() {
 	this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 	this.camera.position.z = 7;
+	this.camera.rotation.x = Math.PI / 11;
 
 	this.actors = [];
 	this.players = [];
@@ -110,7 +111,9 @@ Game.prototype.render = function(dt) {
 		}
 	}
 
-	lerp2d(this.camera.position, this.players[0].position, dt * 5);
+	var camTarget = this.players[0].position.clone();
+	camTarget.y -= 2;
+	lerp2d(this.camera.position, camTarget, dt * 5);
 	this.renderer.render(this.world.scene, this.camera);
 	this.stats.update();
 
