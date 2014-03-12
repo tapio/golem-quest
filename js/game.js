@@ -74,7 +74,6 @@ Game.prototype.spawnRandomItem = function(pos) {
 		item.position.y = (Math.random() * game.world.map.h)|0;
 	}
 	this.items.push(item);
-	this.world.scene.add(item);
 };
 
 Game.prototype.removeItem = function(item) {
@@ -129,6 +128,7 @@ Game.prototype.update = function() {
 			var item = this.findItem(newx, newy);
 			if (item) {
 				item.applyToActor(actor);
+				ui.inWorldMsg(item.message, actor.getPosition());
 				this.removeItem(item);
 				continue;
 			}
