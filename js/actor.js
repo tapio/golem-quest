@@ -26,6 +26,8 @@ function Actor(params) {
 
 	this.faction = params.monster ? FACTION.MONSTER : FACTION.PLAYER;
 	this.health = params.monster ? 2 : 8;
+	this.attack = params.monster ? 2 : 3;
+	this.defense = params.monster ? 2 : 4;
 
 	var self = this;
 	cache.loadModel("assets/models/" + params.model + "/" + params.model + ".js", function(geometry, materials) {

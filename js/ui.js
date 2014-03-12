@@ -34,6 +34,8 @@ UI.prototype.render = function() {
 	for (var i = 0; i < this.players.length; ++i) {
 		var pl = this.players[i];
 		dom("#player-" + (i+1) + " .health").innerHTML = buildString("♥", pl.health);
+		dom("#player-" + (i+1) + " .attack").innerHTML = buildString("★", pl.attack);
+		dom("#player-" + (i+1) + " .defense").innerHTML = buildString("✚", pl.defense);
 	}
 
 	// In-world hud
