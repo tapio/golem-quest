@@ -64,6 +64,7 @@ Game.prototype.update = function() {
 
 		if (controller.poll()) {
 			actor.done = true;
+			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
 			var other = this.findActor(newx, newy);

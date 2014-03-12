@@ -5,9 +5,8 @@ var ui = new UI();
 var game = new Game();
 var clock = new THREE.Clock();
 
-var pl = new Actor({ torch: true });
+var pl = new Actor({ model:"ghoul", torch: true });
 pl.controller = new KeyboardController(KeyboardController.DefaultMapping1);
-game.addActor(pl);
 ui.track(pl);
 
 //var pl2 = new Actor({ torch: true });
@@ -16,10 +15,9 @@ ui.track(pl);
 //ui.track(pl2);
 
 for (var i = 0; i < 50; ++i) {
-	var monster = new Actor({ monster: true });
+	var monster = new Actor({ model: "ghoul", monster: true });
 	monster.position.x = (Math.random() * game.world.map.w)|0;
 	monster.position.y = (Math.random() * game.world.map.h)|0;
-	game.addActor(monster);
 }
 
 function render() {
