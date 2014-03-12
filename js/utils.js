@@ -12,6 +12,13 @@ function distSq(x1, y1, x2, y2) {
 	return dx * dx + dy * dy;
 }
 
+function randProp(obj) {
+	var result, count = 0;
+	for (var prop in obj)
+		if (Math.random() < 1.0 / ++count) result = prop;
+	return obj[result];
+}
+
 function randElem(arr) { return arr[(Math.random() * arr.length) | 0]; }
 
 function removeElem(arr, elem) { arr.splice(arr.indexOf(elem), 1); }

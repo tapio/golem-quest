@@ -7,6 +7,7 @@ function Game() {
 
 	this.actors = [];
 	this.players = [];
+	this.items = [];
 	this.round = 1;
 	this.roundTimer = 0;
 	this.over = false;
@@ -50,7 +51,7 @@ Game.prototype.removeActor = function(actor) {
 		removeElem(this.players, actor);
 	this.world.scene.remove(actor);
 	removeElem(this.actors, actor);
-}
+};
 
 Game.prototype.findActor = function(x, y) {
 	for (var i = 0; i < this.actors.length; ++i) {
@@ -61,6 +62,35 @@ Game.prototype.findActor = function(x, y) {
 	}
 	return null;
 };
+
+
+Game.prototype.spawnRandomItem = function(pos) {
+	var item = new Item(randProp(Items));
+	if (pos) {
+		item.position.x = pos.x;
+		item.position.y = pos.y;
+	} else {
+		item.position.x = (Math.random() * game.world.map.w)|0;
+		item.position.y = (Math.random() * game.world.map.h)|0;
+	}
+	this.items.push(item);
+	this.world.scene.add(item);
+};
+
+Game.prototype.removeItem = function(item) {
+	this.world.scene.remove(item);
+	removeElem(this.items, item);
+};
+
+Game.prototype.findItem = function(x, y) {
+	for (var i = 0; i < this.items.length; ++i) {
+		var item = this.items[i];
+		if (distSq(x, y, item.position.x, item.position.y) < 0.4 * 0.4)
+			return item;
+	}
+	return null;
+};
+
 
 Game.prototype.update = function() {
 	if (Date.now() < this.roundTimer || this.over || !this.players.length)
@@ -78,8 +108,9 @@ Game.prototype.update = function() {
 			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
+			// Attack?
 			var other = this.findActor(newx, newy);
-			if (other && other.visible) {
+			if (other) {
 				if (actor.faction != other.faction) {
 					--other.health;
 					if (other.health <= 0) {
@@ -92,7 +123,17 @@ Game.prototype.update = function() {
 					} else
 						ui.inWorldMsg("Hit!", other.getPosition());
 				}
-			} else if (map.isWalkable(newx, newy))
+				continue;
+			}
+			// Pick up item?
+			var item = this.findItem(newx, newy);
+			if (item) {
+				item.applyToActor(actor);
+				this.removeItem(item);
+				continue;
+			}
+			// Move?
+			if (map.isWalkable(newx, newy))
 				actor.target = new THREE.Vector3(newx, newy, actor.position.z);
 		}
 		else return;

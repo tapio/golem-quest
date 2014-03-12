@@ -20,6 +20,11 @@ for (var i = 0; i < 50; ++i) {
 	monster.position.y = (Math.random() * game.world.map.h)|0;
 }
 
+for (var i = 0; i < 50; ++i) {
+	game.spawnRandomItem();
+}
+
+
 function render() {
 	requestAnimationFrame(render);
 	var dt = clock.getDelta();
