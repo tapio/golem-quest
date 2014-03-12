@@ -44,9 +44,9 @@ canvas {
 	overflow-wrap: break-word;
 }
 .health { color: red; }
-.mana { color: magenta; }
-.coins { color: gold; }
-.gems { color: green; }
+.attack { color: orange; }
+.defense { color: green; }
+.gems { color: purple; }
 
 @-webkit-keyframes fadeout {
 	from { opacity: 1 }
