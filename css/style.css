@@ -51,6 +51,13 @@ h3 { margin: 0px; }
 
 select { width: 150px; }
 
+#start {
+	margin-top: 30px;
+	width: 100px;
+}
+
+/* GAME */
+
 #container { width: 100%; display: none; }
 
 canvas {

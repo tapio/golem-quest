@@ -13,30 +13,32 @@ function render() {
 };
 
 
-function start() {
+function start(players) {
 	dom("#intro").style.display = "none";
 	dom("#container").style.display = "block";
 	cache = new Cache();
 	ui = new UI();
 	game = new Game();
 	clock = new THREE.Clock();
+	var i;
 
-	var pl = new Actor({ model: randElem([ "golem-01", "golem-02", "golem-03"]), torch: true });
-	pl.controller = new KeyboardController(0);
-	ui.track(pl);
+	for (i = 0; i < players.length; ++i) {
+		var pl = new Actor({ model: players[i].character, torch: true });
+		if (players[i].controllerType == "gamepad") {
+			pl.controller = new GamepadController(players[i].controllerIndex);
+		} else {
+			pl.controller = new KeyboardController(players[i].controllerIndex);
+		}
+		ui.track(pl);
+	}
 
-	//var pl2 = new Actor({ torch: true });
-	//pl2.controller = new GamepadController(0);
-	//game.addActor(pl2);
-	//ui.track(pl2);
-
-	for (var i = 0; i < 50; ++i) {
+	for (i = 0; i < 50; ++i) {
 		var monster = new Actor({ model: "ghoul", monster: true });
 		monster.position.x = (Math.random() * game.world.map.w)|0;
 		monster.position.y = (Math.random() * game.world.map.h)|0;
 	}
 
-	for (var i = 0; i < 50; ++i) {
+	for (i = 0; i < 50; ++i) {
 		game.spawnRandomItem();
 	}
 
