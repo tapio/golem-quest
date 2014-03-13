@@ -1,8 +1,13 @@
 var Items = {
 	"health": {
 		model: "potion-health",
-		message: "Health",
+		message: "Health+1",
 		health: 1
+	},
+	"health2": {
+		model: "potion-health",
+		message: "Health+2",
+		health: 2
 	},
 	"attack": {
 		model: "potion-attack",
