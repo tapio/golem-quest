@@ -26,6 +26,7 @@ function Item(params) {
 		self.geometry = geometry;
 		self.material = materials.length > 1 ? new THREE.MeshFaceMaterial(materials) : materials[0];
 		self.rotation.x = Math.PI / 2.5;
+		self.rotation.y = 2 * Math.PI * Math.random();
 		self.position.z = 0.5 * (geometry.boundingBox.max.y - geometry.boundingBox.min.y) + 0.001;
 		game.world.scene.add(self);
 	});
