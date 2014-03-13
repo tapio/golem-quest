@@ -6,7 +6,7 @@ var game = new Game();
 var clock = new THREE.Clock();
 
 var pl = new Actor({ model: randElem([ "golem-01", "golem-02", "golem-03"]), torch: true });
-pl.controller = new KeyboardController(KeyboardController.DefaultMapping1);
+pl.controller = new KeyboardController(0);
 ui.track(pl);
 
 //var pl2 = new Actor({ torch: true });

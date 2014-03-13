@@ -22,9 +22,9 @@ Controller.prototype.poll = function() {
 //
 // KeyboardController
 //
-var KeyboardController = function(mapping) {
+var KeyboardController = function(index) {
 	Controller.call(this);
-	this.mapping = mapping;
+	this.mapping = KeyboardController.DefaultMappings[index || 0];
 
 	var pressed = [];
 
@@ -51,8 +51,10 @@ var KeyboardController = function(mapping) {
 	};
 };
 KeyboardController.prototype = Object.create(Controller.prototype);
-KeyboardController.DefaultMapping1 = { up: 38, down: 40, left: 37, right: 39 } // Arrows
-KeyboardController.DefaultMapping2 = { up: 87, down: 83, left: 65, right: 68 } // WASD
+KeyboardController.DefaultMappings = [
+	{ name: "Arrows", up: 38, down: 40, left: 37, right: 39 },
+	{ name: "WASD", up: 87, down: 83, left: 65, right: 68 }
+];
 
 
 //
