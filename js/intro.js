@@ -77,8 +77,8 @@ dom("#start").addEventListener("click", function() {
 			controllerIndex: elem.options[elem.selectedIndex].value
 		});
 		// Verify there's no duplicates
-		for (var j = 0; j < i; ++j) {
-			if (players[i].controllerType == players[j].controllerType && players[i].controllerIndex == players[j].controllerIndex)
+		for (var j = 0, last = players.length-1; j < last; ++j) {
+			if (players[last].controllerType == players[j].controllerType && players[last].controllerIndex == players[j].controllerIndex)
 				err = "Different controller for each golem, please.";
 		}
 	}
