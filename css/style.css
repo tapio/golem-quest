@@ -77,6 +77,7 @@ canvas {
 }
 
 .sidebar {
+	display: none;
 	position: absolute;
 	width: 250px;
 	height: 100px;
@@ -93,7 +94,7 @@ canvas {
 }
 
 #player-1 { left: 0px; }
-#player-2 { right: 0px; display: none; }
+#player-2 { right: 0px; }
 
 .bar {
 	padding-left: 10px;

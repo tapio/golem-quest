@@ -10,6 +10,7 @@ function UI() {
 
 	this.track = function(actor) {
 		this.players.push(actor);
+		dom("#player-" + this.players.length).style.display = "block";
 	};
 }
 
