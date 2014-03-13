@@ -63,7 +63,6 @@ Game.prototype.findActor = function(x, y) {
 	return null;
 };
 
-
 Game.prototype.spawnRandomItem = function(pos) {
 	var item = new Item(randProp(Items));
 	if (pos) {

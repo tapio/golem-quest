@@ -26,6 +26,7 @@ function Actor(params) {
 	this.health = params.health || 2;
 	this.attack = params.attack || 2;
 	this.defense = params.defense || 2;
+	this.figurines = 0;
 
 	var self = this;
 	cache.loadModel("assets/models/" + params.model + "/" + params.model + ".js", function(geometry, materials) {

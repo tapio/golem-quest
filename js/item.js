@@ -21,6 +21,29 @@ var Items = {
 	}
 };
 
+var Figurines = {
+	"bear": {
+		model: "figurine-bear",
+		message: "Bear found!",
+		figurines: 1
+	},
+	"cat": {
+		model: "figurine-cat",
+		message: "Cat found!",
+		figurines: 1
+	},
+	"owl": {
+		model: "figurine-owl",
+		message: "Owl found!",
+		figurines: 1
+	},
+	"turtle": {
+		model: "figurine-turtle",
+		message: "Turtle found!",
+		figurines: 1
+	}
+}
+
 
 function Item(params) {
 	THREE.Mesh.call(this);
