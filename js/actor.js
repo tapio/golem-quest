@@ -19,8 +19,7 @@ function Actor(params) {
 	this.done = false;
 
 	this.ai = !params.monster ? null : {
-		waypoints: null,
-		activated: false
+		waypoints: null
 	};
 
 	this.controller = params.monster ? new AIController(this) : null;
@@ -69,28 +68,33 @@ Actor.prototype.runAI = function() {
 	this.controller.moveInput.set(0, 0);
 	if (this.health <= 0 || !this.ai || this.target) return;
 
-	var target = game.players[0];
+	var targetPos;
+	var closest = { distSq: 10 * 10, actor: null };
+	for (var i = 0; i < game.players.length; ++i) {
+		var targetPos = game.players[i].position;
+		var testDistSq = distSq(this.position.x, this.position.y, targetPos.x, targetPos.y);
+		if (testDistSq < closest.distSq) {
+			closest.distSq = testDistSq;
+			closest.actor = game.players[i];
+		}
+	}
+
+	var target = closest.actor;
 	if (!target || target.health <= 0) return;
-	var targetPos = target.getPosition();
+	targetPos = target.getPosition();
 
 	var v1 = new THREE.Vector2();
 
-	// Activate monsters
-	if (!this.ai.activated && distSq(this.position.x, this.position.y, targetPos.x, targetPos.y) < 10 * 10) {
-		this.ai.activated = true;
-	}
 
 	// Update path
-	if (this.ai.activated) {
-		var path = game.world.map.pathFinder.findPath(
-			Math.round(this.position.x), Math.round(this.position.y),
-			Math.round(targetPos.x), Math.round(targetPos.y),
-			game.world.map.grid.clone());
-		this.ai.waypoints = [];
-		for (var j = 1; j < path.length; ++j) {
-			v1.set(path[j][0], path[j][1]);
-			this.ai.waypoints.push(v1.clone());
-		}
+	var path = game.world.map.pathFinder.findPath(
+		Math.round(this.position.x), Math.round(this.position.y),
+		Math.round(targetPos.x), Math.round(targetPos.y),
+		game.world.map.grid.clone());
+	this.ai.waypoints = [];
+	for (var j = 1; j < path.length; ++j) {
+		v1.set(path[j][0], path[j][1]);
+		this.ai.waypoints.push(v1.clone());
 	}
 
 	// Does the monster have waypoints?
