@@ -29,19 +29,29 @@ canvas {
 	z-index: 1000;
 }
 
-#sidebar {
+h3 { margin: 0px; }
+
+.sidebar {
 	position: absolute;
-	width: 200px;
-	height: 100%;
-	background-color: rgba(10, 10, 10, 0.75);
-	padding: 5px;
+	width: 250px;
+	height: 100px;
+	background-color: rgba(10, 10, 10, 0.55);
+	padding: 8px;
+	font-family: 'Droid Sans Mono', monospace;
+	font-size: 14px;
+	z-index: 10;
+}
+
+.sidebar table {
 	font-family: 'Droid Sans Mono', monospace;
 	font-size: 14px;
 }
 
+#player-1 { left: 0px; }
+#player-2 { right: 0px; display: none; }
+
 .bar {
-	word-wrap: break-word;
-	overflow-wrap: break-word;
+	padding-left: 10px;
 }
 .health { color: red; }
 .attack { color: orange; }
