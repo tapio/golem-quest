@@ -9,6 +9,29 @@ window.addEventListener("gamepadconnected", function(gamepad) {
 	console.log("Gamepad connected:", gamepad);
 });
 
+// Polyfill for Chrome missing the events
+(function() {
+	if (!navigator.webkitGetGamepads) return;
+	var gamepads = [null, null, null, null];
+
+	setInterval(function() {
+		for(var i = 0, l = navigator.getGamepads().length; i < l; ++i) {
+			var gamepad = navigator.getGamepads()[i];
+			if (gamepad && !gamepads[i]) {
+				var e = new Event("gamepadconnected");
+				e.gamepad = gamepad;
+				window.dispatchEvent(e);
+				gamepads[i] = gamepad;
+			} else if (!gamepad && gamepads[i]) {
+				var e = new Event("gamepaddisconnected");
+				e.gamepad = gamepads[i];
+				window.dispatchEvent(e);
+				gamepads[i] = null;
+			}
+		}
+	}, 1500);
+})();
+
 
 var Controller = function() {
 	this.moveInput = new THREE.Vector2(0, 0);
@@ -52,8 +75,8 @@ var KeyboardController = function(index) {
 };
 KeyboardController.prototype = Object.create(Controller.prototype);
 KeyboardController.DefaultMappings = [
-	{ name: "Arrows", up: 38, down: 40, left: 37, right: 39 },
-	{ name: "WASD", up: 87, down: 83, left: 65, right: 68 }
+	{ name: "Keyboard: Arrows", up: 38, down: 40, left: 37, right: 39 },
+	{ name: "Keyboard: WASD", up: 87, down: 83, left: 65, right: 68 }
 ];
 
 
