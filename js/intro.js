@@ -31,7 +31,7 @@ function populateControllerSelectors() {
 
 var golems = [ "golem-01", "golem-02", "golem-03" ];
 
-if (window.location.hash != "#menu") {
+if (window.location.hash == "#dev") {
 	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);
 }
 
