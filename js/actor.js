@@ -12,8 +12,6 @@ function Actor(params) {
 	}
 	this.castShadow = true;
 	this.receiveShadow = true;
-	this.position.x = (game.world.map.w / 2)|0;
-	this.position.y = (game.world.map.h / 2)|0;
 	this.target = null;
 	this.myturn = false;
 	this.done = false;

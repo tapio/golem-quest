@@ -7,6 +7,8 @@ var TREE = "T";
 var ROCK = "o";
 var BUSH = "b";
 var PILLAR = "p";
+var TOWER = "X";
+var PLACEHOLDER = "x";
 
 function Map(w, h, data) {
 	this.map = new Array(w * h);
@@ -90,7 +92,7 @@ function Map(w, h, data) {
 	this.isWalkable = function(x, y) {
 		if (x < 0 || x >= w || y < 0 || y >= h) return;
 		var c = this.map[y * w + x];
-		return c != WALL && c != ROCK && c != TREE && c != PILLAR;
+		return c != WALL && c != ROCK && c != TREE && c != PILLAR && c != TOWER && c!= PLACEHOLDER;
 	};
 
 	this.updatePathFindingGrid = function() {

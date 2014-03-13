@@ -20,6 +20,12 @@ MapGen.generateOverworld = function(seed) {
 				map.put(i, j, PILLAR);
 		}
 	}
+	var tx = (w/2)|0, ty = (h/2)|0
+	map.put(tx, ty, TOWER);
+	map.put(tx-1, ty-0, PLACEHOLDER);
+	map.put(tx+1, ty+0, PLACEHOLDER);
+	map.put(tx-0, ty-1, PLACEHOLDER);
+	map.put(tx+0, ty+1, PLACEHOLDER);
 	map.updatePathFindingGrid();
 	return map;
 }

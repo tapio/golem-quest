@@ -29,6 +29,8 @@ function start(players) {
 		} else {
 			pl.controller = new KeyboardController(players[i].controllerIndex);
 		}
+		pl.position.x = Math.round(game.world.map.w / 2) - 1 + i * 2;
+		pl.position.y = Math.round(game.world.map.h / 2) - 2;
 		dom("#player-" + (i+1) + " .name").innerHTML = players[i].character.name;
 		dom("#player-" + (i+1) + " .name").className += " " + players[i].character.css;
 		ui.track(pl);

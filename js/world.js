@@ -63,6 +63,7 @@ World.prototype.rebuildScene = function() {
 			if (tile == ROCK) model = randElem(rocks);
 			else if (tile == BUSH) model = randElem(bushes);
 			else if (tile == PILLAR) model = randElem(pillars);
+			else if (tile == TOWER) model = "tower";
 			if (model) cache.loadModel("assets/models/" + model + "/" + model + ".js",
 				objectHandler(this.root, new THREE.Vector3(i, j, 1.0)));
 		}
