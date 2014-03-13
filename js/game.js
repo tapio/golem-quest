@@ -115,12 +115,14 @@ Game.prototype.update = function() {
 				continue;
 			}
 			// Pick up item?
-			var item = this.findItem(newx, newy);
-			if (item) {
-				item.applyToActor(actor);
-				ui.inWorldMsg(item.message, actor.getPosition());
-				this.removeItem(item);
-				continue;
+			if (!actor.ai) {
+				var item = this.findItem(newx, newy);
+				if (item) {
+					item.applyToActor(actor);
+					ui.inWorldMsg(item.message, actor.getPosition());
+					this.removeItem(item);
+					continue;
+				}
 			}
 			// Move?
 			if (map.isWalkable(newx, newy))
