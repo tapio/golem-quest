@@ -50,6 +50,7 @@ if (window.location.hash == "#dev") {
 }
 
 dom("#start").addEventListener("click", function() {
+	var err = "";
 	var players = [];
 	for (var i = 0; i < 3; ++i) {
 		var elem = dom("#select-controller-" + i);
@@ -59,10 +60,15 @@ dom("#start").addEventListener("click", function() {
 			controllerType: elem.selectedIndex <= KeyboardController.DefaultMappings.length ? "keyboard" : "gamepad",
 			controllerIndex: elem.options[elem.selectedIndex].value
 		});
+		// Verify there's no duplicates
+		for (var j = 0; j < i; ++j) {
+			if (players[i].controllerType == players[j].controllerType && players[i].controllerIndex == players[j].controllerIndex)
+				err = "Different controller for each golem, please.";
+		}
 	}
-	var err = "";
 	if (players.length == 0) err = "Who's going to play?";
 	else if (players.length > 2) err = "Sorry, max 2 players...";
+
 	if (err.length) {
 		dom("#setup-error").innerHTML = err;
 		dom("#setup-error").style.display = "block";
