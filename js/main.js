@@ -23,7 +23,7 @@ function start(players) {
 	var i;
 
 	for (i = 0; i < players.length; ++i) {
-		var pl = new Actor({ model: players[i].character.model, torch: true });
+		var pl = new Actor(players[i].character);
 		if (players[i].controllerType == "gamepad") {
 			pl.controller = new GamepadController(players[i].controllerIndex);
 		} else {

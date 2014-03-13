@@ -5,7 +5,7 @@ var FACTION = { PLAYER: 1, MONSTER: -1 };
 function Actor(params) {
 	THREE.Mesh.call(this);
 
-	if (params.torch) {
+	if (!params.monster) {
 		var light = new THREE.PointLight(0xffffcc, 1, 20);
 		light.position.set(0, 0, 1);
 		this.add(light);
@@ -25,9 +25,9 @@ function Actor(params) {
 	this.controller = params.monster ? new AIController(this) : null;
 
 	this.faction = params.monster ? FACTION.MONSTER : FACTION.PLAYER;
-	this.health = params.monster ? 2 : 8;
-	this.attack = params.monster ? 2 : 3;
-	this.defense = params.monster ? 2 : 4;
+	this.health = params.health || 2;
+	this.attack = params.attack || 2;
+	this.defense = params.defense || 2;
 
 	var self = this;
 	cache.loadModel("assets/models/" + params.model + "/" + params.model + ".js", function(geometry, materials) {

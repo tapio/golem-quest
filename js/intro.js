@@ -33,15 +33,24 @@ var golems = [
 	{
 		name: "Stone Golem",
 		model: "golem-01",
-		css: "stone"
+		css: "stone",
+		health: 8,
+		attack: 4,
+		defense: 4
 	},{
 		name: "Ice Golem",
 		model: "golem-02",
-		css: "ice"
+		css: "ice",
+		health: 7,
+		attack: 5,
+		defense: 3
 	},{
 		name: "Fire Golem",
 		model: "golem-03",
-		css: "fire"
+		css: "fire",
+		health: 7,
+		attack: 5,
+		defense: 3
 	}
 ]
 
