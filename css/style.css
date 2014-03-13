@@ -80,7 +80,7 @@ canvas {
 	display: none;
 	position: absolute;
 	width: 250px;
-	height: 100px;
+	height: 80px;
 	background-color: rgba(10, 10, 10, 0.55);
 	padding: 8px;
 	font-family: 'Droid Sans Mono', monospace;
