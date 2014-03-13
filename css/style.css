@@ -9,9 +9,49 @@ body {
 	overflow: hidden;
 }
 
-.hidden { display: none; }
+h3 { margin: 0px; }
 
-#container { width: 100%; }
+#title {
+	font-size: 80px;
+	color: #cdc;
+	text-shadow: 0px 0px 25px #7f7;
+}
+
+#intro {
+	text-align: center;
+}
+
+#intro p {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
+}
+
+#notices {
+	font-family: 'Droid Sans Mono', monospace;
+	font-size: 14px;
+}
+
+.hidden { display: none; }
+.error { color: red; font-weight: bold; }
+.error:before { content: "[!] "; }
+.warning:before { color: yellow; font-weight: bold; content: "[!] "; }
+.notice:before { color: green; font-weight: bold; content: "[!] "; }
+
+#webgl-error { display: none; }
+#gamepad-warning { display: none; }
+#gamepad-info { display: none; }
+
+#setup {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#setup td { min-width: 180px; }
+
+select { width: 150px; }
+
+#container { width: 100%; display: none; }
 
 canvas {
 	position: absolute;
@@ -28,8 +68,6 @@ canvas {
 	text-align: center;
 	z-index: 1000;
 }
-
-h3 { margin: 0px; }
 
 .sidebar {
 	position: absolute;
@@ -107,7 +145,7 @@ h3 { margin: 0px; }
 	margin: auto;
 	color: #c00;
 	font-size: 32px;
-	text-shadow: 0px 0px 5px #000000;
+	text-shadow: 0px 0px 5px #000;
 }
 
 #renderer-info {

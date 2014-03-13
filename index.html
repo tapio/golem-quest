@@ -9,6 +9,43 @@
 	</head>
 	<body>
 
+		<div id="intro">
+			<h1 id="title">Golem Quest</h1>
+			<p>Play as a golem, collect gems, vanguish the enemies.
+			Made in 7 days for the 2014 7DRL Challenge.</p>
+
+			<div id="notices">
+				<p id="webgl-error" class="error">
+				Unfortunately you can't play because your browser or GPU
+				driver doesn't support <a href="http://get.webgl.org/">WebGL</a>.</p>
+				<p id="gamepad-warning" class="warning">
+				Your browser does not seem to support gamepads, so you can only
+				play with keyboard.</p>
+				<p id="gamepad-info" class="notice"></span>
+				If you have a gamepad, press a button to activate it!</p>
+			</div>
+
+			<table id="setup">
+				<tr><td>Stone Golem</td><td>Ice Golem</td><td>Fire Golem</td></tr>
+				<tr><td>
+					<select id="select-controller-0">
+						<option value="0">None</option>
+						<option value="1" selected>Keyboard Arrows</option>
+						<option value="2">Keyboard WASD</option>
+					</select>
+				</td><td>
+					<select id="select-controller-1">
+						<option value="0">None</option>
+					</select>
+				</td><td>
+					<select id="select-controller-2">
+						<option value="0">None</option>
+					</select>
+				</td></tr>
+				<tr></tr>
+			</table>
+		</div>
+
 		<div id="container">
 			<div id="loading">Loading...</div>
 			<div id="player-1" class="sidebar">
@@ -55,6 +92,7 @@
 		<script src="js/ui.js"></script>
 		<script src="js/game.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/intro.js"></script>
 
 	</body>
 </html>
