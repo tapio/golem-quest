@@ -49,6 +49,13 @@ if (window.location.hash == "#dev") {
 	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);
 }
 
+if (window.location.hash == "#coop-dev") {
+	start([
+		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 },
+		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 1 }
+	]);
+}
+
 dom("#start").addEventListener("click", function() {
 	var err = "";
 	var players = [];

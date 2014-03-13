@@ -104,6 +104,7 @@ Game.prototype.update = function() {
 
 		if (controller.poll()) {
 			actor.done = true;
+			actor.myturn = false;
 			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
@@ -124,8 +125,10 @@ Game.prototype.update = function() {
 			// Move?
 			if (map.isWalkable(newx, newy))
 				actor.target = new THREE.Vector3(newx, newy, actor.position.z);
+		} else {
+			actor.myturn = true;
+			return;
 		}
-		else return;
 	}
 	// If we got here, everybody has had their turn
 	for (var i = 0; i < this.actors.length; ++i)
@@ -136,8 +139,9 @@ Game.prototype.update = function() {
 
 Game.prototype.render = function(dt) {
 	if (!this.players.length) return;
+	var i;
 
-	for (var i = 0; i < this.actors.length; ++i) {
+	for (i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
 		if (actor.target === null) continue;
 		lerp2d(actor.position, actor.target, dt * 15);
@@ -148,6 +152,9 @@ Game.prototype.render = function(dt) {
 	}
 
 	var camTarget = this.players[0].position.clone();
+	for (i = 1; i < this.players.length; ++i)
+		camTarget.add(this.players[i].position);
+	camTarget.divideScalar(this.players.length);
 	camTarget.y -= 2;
 	lerp2d(this.camera.position, camTarget, dt * 5);
 	this.renderer.render(this.world.scene, this.camera);

@@ -37,6 +37,8 @@ UI.prototype.render = function() {
 		dom("#player-" + (i+1) + " .health").innerHTML = buildString("♥", pl.health);
 		dom("#player-" + (i+1) + " .attack").innerHTML = buildString("★", pl.attack);
 		dom("#player-" + (i+1) + " .defense").innerHTML = buildString("✚", pl.defense);
+		if (this.players.length > 1)
+			dom("#player-" + (i+1) + " .turn-indicator").style.display = pl.myturn ? "inline" : "none";
 	}
 
 	// In-world hud

@@ -15,6 +15,7 @@ function Actor(params) {
 	this.position.x = (game.world.map.w / 2)|0;
 	this.position.y = (game.world.map.h / 2)|0;
 	this.target = null;
+	this.myturn = false;
 	this.done = false;
 
 	this.ai = !params.monster ? null : {

@@ -96,9 +96,8 @@ canvas {
 #player-1 { left: 0px; }
 #player-2 { right: 0px; }
 
-.bar {
-	padding-left: 10px;
-}
+.turn-indicator { color: green; font-weight: bold; }
+.bar { padding-left: 10px; }
 .health { color: red; }
 .attack { color: orange; }
 .defense { color: green; }
@@ -141,6 +140,7 @@ canvas {
 	background: -o-radial-gradient(ellipse, rgba(128, 0, 0, 0.25), rgba(0, 0, 0, 1));
 	background: radial-gradient(ellipse, rgba(128, 0, 0, 0.25), rgba(0, 0, 0, 1));
 	text-align: center;
+	z-index: 100;
 }
 
 #deathscreen div {
