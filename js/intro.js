@@ -29,7 +29,21 @@ function populateControllerSelectors() {
 
 })();
 
-var golems = [ "golem-01", "golem-02", "golem-03" ];
+var golems = [
+	{
+		name: "Stone Golem",
+		model: "golem-01",
+		css: "stone"
+	},{
+		name: "Ice Golem",
+		model: "golem-02",
+		css: "ice"
+	},{
+		name: "Fire Golem",
+		model: "golem-03",
+		css: "fire"
+	}
+]
 
 if (window.location.hash == "#dev") {
 	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);
@@ -46,7 +60,13 @@ dom("#start").addEventListener("click", function() {
 			controllerIndex: elem.options[elem.selectedIndex].value
 		});
 	}
-	if (players.length == 0) return;
-	if (players.length > 2) return;
+	var err = "";
+	if (players.length == 0) err = "Who's going to play?";
+	else if (players.length > 2) err = "Sorry, max 2 players...";
+	if (err.length) {
+		dom("#setup-error").innerHTML = err;
+		dom("#setup-error").style.display = "block";
+		return;
+	}
 	start(players);
 });

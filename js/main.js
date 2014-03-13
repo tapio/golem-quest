@@ -23,12 +23,14 @@ function start(players) {
 	var i;
 
 	for (i = 0; i < players.length; ++i) {
-		var pl = new Actor({ model: players[i].character, torch: true });
+		var pl = new Actor({ model: players[i].character.model, torch: true });
 		if (players[i].controllerType == "gamepad") {
 			pl.controller = new GamepadController(players[i].controllerIndex);
 		} else {
 			pl.controller = new KeyboardController(players[i].controllerIndex);
 		}
+		dom("#player-" + (i+1) + " .name").innerHTML = players[i].character.name;
+		dom("#player-" + (i+1) + " .name").className += " " + players[i].character.css;
 		ui.track(pl);
 	}
 

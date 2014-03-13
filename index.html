@@ -11,22 +11,23 @@
 
 		<div id="intro">
 			<h1 id="title">Golem Quest</h1>
-			<p>Play as a golem, collect gems (maybe), vanguish the enemies.
-			Hopefully made in 7 days for the 2014 7DRL Challenge.</p>
+			<p>Pick your golem and vanquish the enemies. Two players can work together!
+			Bump into stuff to interact (attack, pick up).<br />
+			Made in 7 days (hopefully) for the 2014 7DRL Challenge.</p>
 
-			<div id="notices">
-				<p id="webgl-error" class="error">
+			<div id="notices" class="mono">
+				<p id="webgl-error" class="error hidden">
 				Unfortunately you can't play because your browser or GPU
 				driver doesn't support <a href="http://get.webgl.org/">WebGL</a>.</p>
-				<p id="gamepad-warning" class="warning">
+				<p id="gamepad-warning" class="warning hidden">
 				Your browser does not seem to support gamepads, so you can only
 				play with keyboard.</p>
-				<p id="gamepad-info" class="notice"></span>
+				<p id="gamepad-info" class="notice hidden"></span>
 				If you have a gamepad, press a button to activate it!</p>
 			</div>
 
 			<table id="setup">
-				<tr><td>Stone Golem</td><td>Ice Golem</td><td>Fire Golem</td></tr>
+				<tr><td class="stone">Stone Golem</td><td class="ice">Ice Golem</td><td class="fire">Fire Golem</td></tr>
 				<tr><td>
 					<select id="select-controller-0">
 						<option value="0">None</option>
@@ -44,8 +45,8 @@
 				</td></tr>
 				<tr></tr>
 			</table>
-
 			<button id="start">Start Game</button>
+			<p id="setup-error" class="error hidden mono"></p>
 		</div>
 
 		<div id="container">

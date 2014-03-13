@@ -13,7 +13,7 @@ h3 { margin: 0px; }
 
 #title {
 	font-size: 80px;
-	color: #cdc;
+	color: #dfd;
 	text-shadow: 0px 0px 25px #7f7;
 }
 
@@ -27,20 +27,20 @@ h3 { margin: 0px; }
 	max-width: 600px;
 }
 
-#notices {
+.mono {
 	font-family: 'Droid Sans Mono', monospace;
-	font-size: 14px;
+	font-size: 13px;
 }
 
 .hidden { display: none; }
-.error { color: red; font-weight: bold; }
+.error { color: red; }
 .error:before { content: "[!] "; }
-.warning:before { color: yellow; font-weight: bold; content: "[!] "; }
-.notice:before { color: green; font-weight: bold; content: "[!] "; }
+.warning:before { color: yellow; content: "[!] "; }
+.notice:before { color: green; content: "[!] "; }
 
-#webgl-error { display: none; }
-#gamepad-warning { display: none; }
-#gamepad-info { display: none; }
+.stone { color: #575; }
+.ice   { color: #ccf; }
+.fire  { color: #fc0; }
 
 #setup {
 	margin: 0 auto;
