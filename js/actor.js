@@ -9,6 +9,9 @@ var Mobs = [
 	},{
 		model: "spider",
 		monster: true
+	},{
+		model: "horn-head",
+		monster: true
 	}
 ];
 
