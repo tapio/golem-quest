@@ -2,6 +2,16 @@
 
 var FACTION = { PLAYER: 1, MONSTER: -1 };
 
+var Mobs = [
+	{
+		model: "ghoul",
+		monster: true
+	},{
+		model: "spider",
+		monster: true
+	}
+];
+
 function Actor(params) {
 	THREE.Mesh.call(this);
 

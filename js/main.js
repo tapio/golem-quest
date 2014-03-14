@@ -39,7 +39,7 @@ function start(players) {
 	}
 
 	for (i = 0; i < 50; ++i) {
-		var monster = new Actor({ model: "ghoul", monster: true });
+		var monster = new Actor(randElem(Mobs));
 		pos = game.world.map.findRandomPosition();
 		monster.position.x = pos.x;
 		monster.position.y = pos.y;
