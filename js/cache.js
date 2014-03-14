@@ -45,7 +45,7 @@ function Cache() {
 		return new THREE.MeshPhongMaterial({
 			ambient: 0xffffff,
 			diffuse: 0xffffff,
-			specular: 0xffffff,
+			specular: 0x888888,
 			shininess: 20,
 			perPixel: true,
 			map: THREE.ImageUtils.loadTexture(texturePath + name + ".jpg"),
