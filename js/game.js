@@ -150,8 +150,16 @@ Game.prototype.render = function(dt) {
 	if (!this.players.length) return;
 	var i;
 
+	var torchAngle = (Date.now() % 1000) / 1000 * 2 * Math.PI;
+
 	for (i = 0; i < this.actors.length; ++i) {
 		var actor = this.actors[i];
+		// Light animation
+		if (actor.light) {
+			actor.light.position.x = Math.cos(torchAngle) * 0.1;
+			actor.light.position.y = Math.sin(torchAngle) * 0.1;
+		}
+		// Movement animation
 		if (actor.target === null) continue;
 		lerp2d(actor.position, actor.target, dt * 15);
 		if (actor.position.distanceToSquared(actor.target) < 0.01) {

@@ -6,7 +6,7 @@ function Actor(params) {
 	THREE.Mesh.call(this);
 
 	if (!params.monster) {
-		this.light = new THREE.PointLight(0xffffcc, 1, 20);
+		this.light = new THREE.PointLight(0xffffcc, 1, 10);
 		this.light.position.set(0, 0, 1);
 		this.add(this.light);
 	}
