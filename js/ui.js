@@ -25,7 +25,7 @@ UI.prototype.inWorldMsg = function(msg, position) {
 	var scale = 0.02, r = 0.2;
 	sprite.scale.set(scale, scale, scale);
 	sprite.position.set(position.x - r + 2 * Math.random() * r, position.y - 2 * Math.random() * r, 2.5);
-	sprite.timeout = Date.now() + 3000;
+	sprite.timeout = Date.now() + 2000;
 
 	this.scene.add(sprite);
 	this.elems.push(sprite);
@@ -43,7 +43,8 @@ UI.prototype.render = function() {
 	}
 
 	// In-world hud
-	this.renderer.render(this.scene, game.camera);
+	if (this.elems.length)
+		this.renderer.render(this.scene, game.camera);
 
 	// Reap faded elements
 	var time = Date.now();
