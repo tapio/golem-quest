@@ -105,6 +105,15 @@ Game.prototype.update = function() {
 			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
+			// Win?
+			if (!actor.ai && game.figurines <= 0) {
+				var tile = map.get(newx, newy);
+				if (tile == TOWER || tile == PLACEHOLDER) { // FIXME: Placeholder is a poor name here
+					dom("#winscreen").style.display = "block";
+					this.over = true;
+					return;
+				}
+			}
 			// Attack?
 			var other = this.findActor(newx, newy);
 			if (other) {
