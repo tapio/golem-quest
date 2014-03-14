@@ -102,7 +102,8 @@ Game.prototype.update = function() {
 		if (controller.poll()) {
 			actor.done = true;
 			actor.myturn = false;
-			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
+			if (controller.moveInput.x || controller.moveInput.y)
+				actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
 			// Win?

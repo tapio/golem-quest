@@ -34,6 +34,7 @@ function Actor(params) {
 		geometry.dynamic = false;
 		self.geometry = geometry;
 		self.material = materials.length > 1 ? new THREE.MeshFaceMaterial(materials) : materials[0];
+		self.rotation.z = 2 * Math.PI * Math.random();
 		self.position.z = 0.5 * (geometry.boundingBox.max.z - geometry.boundingBox.min.z) + 0.001;
 		game.addActor(self);
 	});
