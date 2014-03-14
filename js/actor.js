@@ -54,8 +54,13 @@ Actor.prototype.fight = function(other) {
 		if (other.health <= 0) {
 			ui.inWorldMsg("Killed!", other.getPosition());
 			if (other.faction == FACTION.PLAYER) {
+				// Game over
 				document.getElementById("deathscreen").style.display = "block";
 				game.over = true;
+			} else {
+				// Loot
+				if (Math.random() < 0.5)
+					game.spawnRandomItem(other.position);
 			}
 			game.removeActor(other);
 		} else
