@@ -7,7 +7,7 @@ function World() {
 	this.scene.add(new THREE.AmbientLight(0x222222));
 
 	this.rebuildScene();
-};
+}
 
 World.prototype.rebuildScene = function() {
 	if (this.root) this.scene.remove(this.root);
@@ -53,7 +53,7 @@ World.prototype.rebuildScene = function() {
 			mesh.matrixAutoUpdate = false;
 			mesh.updateMatrix();
 			parent.add(mesh);
-		}
+		};
 	}
 
 	for (j = 0; j < map.h; ++j) {

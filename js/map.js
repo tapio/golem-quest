@@ -102,7 +102,7 @@ function Map(w, h, data) {
 			x: Math.floor(Math.random() * w),
 			y: Math.floor(Math.random() * h)
 		};
-	}
+	};
 
 	this.isWalkable = function(x, y) {
 		if (x < 0 || x >= w || y < 0 || y >= h) return;

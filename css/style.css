@@ -106,7 +106,6 @@ canvas {
 .health { color: red; }
 .attack { color: orange; }
 .defense { color: green; }
-.gems { color: purple; }
 
 #figurines {
 	position: relative;

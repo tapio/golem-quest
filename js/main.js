@@ -10,7 +10,7 @@ function render() {
 	game.update();
 	game.render(dt);
 	ui.render();
-};
+}
 
 
 function start(players) {
@@ -20,7 +20,7 @@ function start(players) {
 	ui = new UI();
 	game = new Game();
 	clock = new THREE.Clock();
-	var i;
+	var i, pos;
 
 	for (i = 0; i < players.length; ++i) {
 		var pl = new Actor(players[i].character);
@@ -40,7 +40,7 @@ function start(players) {
 
 	for (i = 0; i < 50; ++i) {
 		var monster = new Actor({ model: "ghoul", monster: true });
-		var pos = game.world.map.findRandomPosition();
+		pos = game.world.map.findRandomPosition();
 		monster.position.x = pos.x;
 		monster.position.y = pos.y;
 	}
@@ -49,15 +49,17 @@ function start(players) {
 		game.spawnRandomItem();
 	}
 
+	function figurinePositionFilter(x, y, c) {
+		//return distSq(x, y, game.world.map.w * 0.5, game.world.map.h * 0.5) < 40;
+		return x < 0.25 * game.world.map.w
+			|| x > 0.75 * game.world.map.w
+			|| y < 0.25 * game.world.map.h
+			|| y > 0.75 * game.world.map.h;
+	}
+
 	for (i = 0; i < Figurines.length; ++i) {
 		var fig = new Item(Figurines[i]);
-		var pos = game.world.map.findRandomPosition(function(x, y, c) {
-			//return distSq(x, y, game.world.map.w * 0.5, game.world.map.h * 0.5) < 40;
-			return x < 0.25 * game.world.map.w
-				|| x > 0.75 * game.world.map.w
-				|| y < 0.25 * game.world.map.h
-				|| y > 0.75 * game.world.map.h;
-		});
+		pos = game.world.map.findRandomPosition(figurinePositionFilter);
 		fig.position.x = pos.x;
 		fig.position.y = pos.y;
 		game.items.push(fig);

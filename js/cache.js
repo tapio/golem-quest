@@ -61,4 +61,4 @@ function Cache() {
 		this.materials[name] = m = createMaterial(name);
 		return m;
 	};
-};
+}

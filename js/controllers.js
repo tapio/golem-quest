@@ -118,4 +118,4 @@ AIController.prototype = Object.create(Controller.prototype);
 AIController.prototype.poll = function() {
 	this.actor.runAI();
 	return true;
-}
+};

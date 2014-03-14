@@ -53,7 +53,7 @@ var golems = [
 		attack: 5,
 		defense: 3
 	}
-]
+];
 
 if (window.location.hash == "#dev") {
 	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);

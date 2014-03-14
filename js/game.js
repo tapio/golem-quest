@@ -148,7 +148,7 @@ Game.prototype.update = function() {
 		this.actors[i].done = false;
 	++this.round;
 	this.roundTimer = Date.now() + 150;
-}
+};
 
 Game.prototype.render = function(dt) {
 	if (!this.players.length) return;

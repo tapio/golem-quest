@@ -43,7 +43,7 @@ Actor.prototype = Object.create(THREE.Mesh.prototype);
 
 Actor.prototype.getPosition = function() {
 	return this.target ? this.target : this.position;
-}
+};
 
 Actor.prototype.fight = function(other) {
 	if (this.faction == other.faction) return false;
@@ -77,7 +77,7 @@ Actor.prototype.runAI = function() {
 	var targetPos;
 	var closest = { distSq: 8 * 8, actor: null };
 	for (var i = 0; i < game.players.length; ++i) {
-		var targetPos = game.players[i].position;
+		targetPos = game.players[i].position;
 		var testDistSq = distSq(this.position.x, this.position.y, targetPos.x, targetPos.y);
 		if (testDistSq < closest.distSq) {
 			closest.distSq = testDistSq;
@@ -114,4 +114,4 @@ Actor.prototype.runAI = function() {
 			this.ai.waypoints.splice(0, 1);
 		}
 	}
-}
+};

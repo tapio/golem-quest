@@ -115,6 +115,6 @@ function BlockGeometry( width, height, depth, widthSegments, heightSegments, dep
 	this.computeCentroids();
 	this.mergeVertices();
 
-};
+}
 
 BlockGeometry.prototype = Object.create( THREE.Geometry.prototype );
