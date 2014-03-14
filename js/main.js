@@ -29,6 +29,8 @@ function start(players) {
 		} else {
 			pl.controller = new KeyboardController(players[i].controllerIndex);
 		}
+		if (players.length > 1)
+			pl.light.intensity *= 0.75;
 		pl.position.x = Math.round(game.world.map.w / 2) - 1 + i * 2;
 		pl.position.y = Math.round(game.world.map.h / 2) - 2;
 		dom("#player-" + (i+1) + " .name").innerHTML = players[i].character.name;

@@ -6,9 +6,9 @@ function Actor(params) {
 	THREE.Mesh.call(this);
 
 	if (!params.monster) {
-		var light = new THREE.PointLight(0xffffcc, 1, 20);
-		light.position.set(0, 0, 1);
-		this.add(light);
+		this.light = new THREE.PointLight(0xffffcc, 1, 20);
+		this.light.position.set(0, 0, 1);
+		this.add(this.light);
 	}
 	this.castShadow = true;
 	this.receiveShadow = true;
