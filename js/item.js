@@ -23,28 +23,34 @@ var Items = {
 	}
 };
 
-var Figurines = {
-	"bear": {
+function getFigurineAction(figId) {
+	return function(actor) {
+		game.figurines--;
+		dom(figId).className += " figurine-found";
+		if (game.figurines <= 0)
+			dom("#all-found").style.display = "block";
+	};
+}
+
+var Figurines = [
+	{
 		model: "figurine-bear",
 		message: "Bear found!",
-		figurines: 1
-	},
-	"cat": {
+		action: getFigurineAction("#bear")
+	},{
 		model: "figurine-cat",
 		message: "Cat found!",
-		figurines: 1
-	},
-	"owl": {
+		action: getFigurineAction("#cat")
+	},{
 		model: "figurine-owl",
 		message: "Owl found!",
-		figurines: 1
-	},
-	"turtle": {
+		action: getFigurineAction("#owl")
+	},{
 		model: "figurine-turtle",
 		message: "Turtle found!",
-		figurines: 1
+		action: getFigurineAction("#turtle")
 	}
-}
+];
 
 
 function Item(params) {
@@ -57,6 +63,7 @@ function Item(params) {
 		else if (typeof params[i] == "number") this.item[i] = params[i];
 	}
 	this.message = params.message || "Loot";
+	this.action = params.action || null;
 
 	// Model
 	var self = this;
@@ -80,4 +87,6 @@ Item.prototype.applyToActor = function(actor) {
 			actor[i] += attrib;
 		} else throw "Illegal item attribute value: " + i + " = " + attrib;
 	}
+	if (this.action)
+		this.action(actor);
 };

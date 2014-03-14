@@ -68,7 +68,7 @@ Actor.prototype.runAI = function() {
 	if (this.health <= 0 || !this.ai || this.target) return;
 
 	var targetPos;
-	var closest = { distSq: 10 * 10, actor: null };
+	var closest = { distSq: 8 * 8, actor: null };
 	for (var i = 0; i < game.players.length; ++i) {
 		var targetPos = game.players[i].position;
 		var testDistSq = distSq(this.position.x, this.position.y, targetPos.x, targetPos.y);

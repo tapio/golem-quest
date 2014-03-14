@@ -12,6 +12,8 @@ function Game() {
 	this.roundTimer = 0;
 	this.over = false;
 
+	this.figurines = 0;
+
 	this.world = new World();
 
 	var self = this;
@@ -65,13 +67,9 @@ Game.prototype.findActor = function(x, y) {
 
 Game.prototype.spawnRandomItem = function(pos) {
 	var item = new Item(randProp(Items));
-	if (pos) {
-		item.position.x = pos.x;
-		item.position.y = pos.y;
-	} else {
-		item.position.x = (Math.random() * game.world.map.w)|0;
-		item.position.y = (Math.random() * game.world.map.h)|0;
-	}
+	pos = pos || this.world.map.findRandomPosition();
+	item.position.x = pos.x;
+	item.position.y = pos.y;
 	this.items.push(item);
 };
 

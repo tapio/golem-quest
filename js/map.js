@@ -89,6 +89,21 @@ function Map(w, h, data) {
 		return true;
 	};
 
+	this.findRandomPosition = function(filter) {
+		for (var i = 0; i < 1000; ++i) {
+			var x = Math.floor(Math.random() * w);
+			var y = Math.floor(Math.random() * h);
+			var c = this.get(x, y);
+			if (c != VOID && c != OPEN) continue;
+			if (filter && !filter(x, y, c)) continue;
+			return { x: x, y: y };
+		}
+		return { // Fail safe, should not come here
+			x: Math.floor(Math.random() * w),
+			y: Math.floor(Math.random() * h)
+		};
+	}
+
 	this.isWalkable = function(x, y) {
 		if (x < 0 || x >= w || y < 0 || y >= h) return;
 		var c = this.map[y * w + x];

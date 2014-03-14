@@ -38,12 +38,28 @@ function start(players) {
 
 	for (i = 0; i < 50; ++i) {
 		var monster = new Actor({ model: "ghoul", monster: true });
-		monster.position.x = (Math.random() * game.world.map.w)|0;
-		monster.position.y = (Math.random() * game.world.map.h)|0;
+		var pos = game.world.map.findRandomPosition();
+		monster.position.x = pos.x;
+		monster.position.y = pos.y;
 	}
 
 	for (i = 0; i < 50; ++i) {
 		game.spawnRandomItem();
+	}
+
+	for (i = 0; i < Figurines.length; ++i) {
+		var fig = new Item(Figurines[i]);
+		var pos = game.world.map.findRandomPosition(function(x, y, c) {
+			//return distSq(x, y, game.world.map.w * 0.5, game.world.map.h * 0.5) < 40;
+			return x < 0.25 * game.world.map.w
+				|| x > 0.75 * game.world.map.w
+				|| y < 0.25 * game.world.map.h
+				|| y > 0.75 * game.world.map.h;
+		});
+		fig.position.x = pos.x;
+		fig.position.y = pos.y;
+		game.items.push(fig);
+		game.figurines++;
 	}
 
 	render();
