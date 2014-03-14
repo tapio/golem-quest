@@ -9,12 +9,17 @@ body {
 	overflow: hidden;
 }
 
+h1 { font-size: 80px; }
 h3 { margin: 0px; }
 
-h1 {
-	font-size: 80px;
+#title {
 	color: #dfd;
 	text-shadow: 0px 0px 25px #7f7;
+}
+
+#completed {
+	color: green;
+	text-shadow: 0px 0px 25px #000;
 }
 
 #intro {
@@ -206,9 +211,9 @@ canvas {
 	width:70%;
 	height: 64px;
 	margin: auto;
-	color: #0c0;
+	color: red;
 	font-size: 28px;
-	text-shadow: 0px 0px 8px #000;
+	text-shadow: 0px 0px 6px #000;
 }
 
 #winscreen div p {
