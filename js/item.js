@@ -1,3 +1,5 @@
+"use strict";
+
 var Items = {
 	"health": {
 		model: "potion-health",

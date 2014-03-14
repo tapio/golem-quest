@@ -1,3 +1,4 @@
+"use strict";
 
 Element.prototype.prependChild = function(child) { this.insertBefore(child, this.firstChild); };
 

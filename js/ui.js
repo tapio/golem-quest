@@ -1,3 +1,4 @@
+"use strict";
 
 function UI() {
 	this.scene = new THREE.Scene();

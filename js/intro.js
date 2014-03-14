@@ -1,3 +1,4 @@
+"use strict";
 
 function populateControllerSelectors() {
 	var i, j;
