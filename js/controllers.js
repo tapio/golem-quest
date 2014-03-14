@@ -4,9 +4,9 @@
 navigator.getGamepads = navigator.webkitGetGamepads || navigator.mozGetGamepads || navigator.getGamepads;
 if (!!navigator.getGamepads) console.log("Gamepads are supported");
 else console.log("No gamepad support");
-window.addEventListener("gamepadconnected", function(gamepad) {
+window.addEventListener("gamepadconnected", function(e) {
 	// This event listener is currently needed for Firefox
-	console.log("Gamepad connected:", gamepad);
+	console.log("Gamepad connected:", e.gamepad);
 });
 
 // Polyfill for Chrome missing the events
