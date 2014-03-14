@@ -46,7 +46,7 @@ Actor.prototype.getPosition = function() {
 }
 
 Actor.prototype.fight = function(other) {
-	if (this.faction == other.faction) return;
+	if (this.faction == other.faction) return false;
 	var maxDice = 10;
 	var dice1 = randInt(1, maxDice);
 	var dice2 = randInt(1, maxDice);
@@ -67,6 +67,7 @@ Actor.prototype.fight = function(other) {
 		} else
 			ui.inWorldMsg("-1", other.getPosition());
 	} else ui.inWorldMsg("Miss!", other.getPosition());
+	return true;
 };
 
 Actor.prototype.runAI = function() {

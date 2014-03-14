@@ -102,8 +102,9 @@ Game.prototype.update = function() {
 		if (controller.poll()) {
 			actor.done = true;
 			actor.myturn = false;
-			if (controller.moveInput.x || controller.moveInput.y)
-				actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
+			if (controller.moveInput.x == 0 && controller.moveInput.y == 0)
+				continue;
+			actor.rotation.z = Math.atan2(controller.moveInput.y, controller.moveInput.x);
 			var newx = Math.round(actor.position.x + controller.moveInput.x);
 			var newy = Math.round(actor.position.y + controller.moveInput.y);
 			// Win?
@@ -118,7 +119,10 @@ Game.prototype.update = function() {
 			// Attack?
 			var other = this.findActor(newx, newy);
 			if (other) {
-				actor.fight(other);
+				if (actor.fight(other)) {
+					this.roundTimer = Date.now() + 300;
+					return;
+				}
 				continue;
 			}
 			// Pick up item?
@@ -143,7 +147,7 @@ Game.prototype.update = function() {
 	for (var i = 0; i < this.actors.length; ++i)
 		this.actors[i].done = false;
 	++this.round;
-	this.roundTimer = Date.now() + 200;
+	this.roundTimer = Date.now() + 150;
 }
 
 Game.prototype.render = function(dt) {
