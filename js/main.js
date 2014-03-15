@@ -41,7 +41,7 @@ function start(players) {
 	}
 
 	for (i = 0; i < Mobs.length; ++i) {
-		Mobs[i].amount += DIFFICULTY * 4;
+		Mobs[i].amount += DIFFICULTY * 3;
 		while (Mobs[i].amount) {
 			Mobs[i].amount--;
 			var monster = new Actor(Mobs[i]);
@@ -51,7 +51,7 @@ function start(players) {
 		}
 	}
 
-	var itemCount = 40 - (DIFFICULTY * 10);
+	var itemCount = 40 - (DIFFICULTY * 5);
 	for (i = 0; i < itemCount; ++i) {
 		game.spawnRandomItem();
 	}
