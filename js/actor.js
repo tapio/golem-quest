@@ -8,20 +8,23 @@ var Mobs = [
 		monster: true,
 		health: 2,
 		attack: 2,
-		defense: 2
+		defense: 2,
+		speed: 1.0
 	},{
 		model: "ghoul",
 		monster: true,
 		health: 3,
 		attack: 3,
-		defense: 3
+		defense: 3,
+		speed: 1.0
 
 	},{
 		model: "horn-head",
 		monster: true,
 		health: 5,
 		attack: 7,
-		defense: 5
+		defense: 5,
+		speed: 0.85
 	}
 ];
 
@@ -40,7 +43,8 @@ function Actor(params) {
 	this.done = false;
 
 	this.ai = !params.monster ? null : {
-		waypoints: null
+		waypoints: null,
+		speed: params.speed || 1
 	};
 
 	this.controller = params.monster ? new AIController(this) : null;
@@ -100,7 +104,7 @@ Actor.prototype.runAI = function() {
 	var targetPos;
 	var closest = { distSq: 8 * 8, actor: null };
 	for (var i = 0; i < game.players.length; ++i) {
-		targetPos = game.players[i].position;
+		targetPos = game.players[i].getPosition();
 		var testDistSq = distSq(this.position.x, this.position.y, targetPos.x, targetPos.y);
 		if (testDistSq < closest.distSq) {
 			closest.distSq = testDistSq;
@@ -110,6 +114,7 @@ Actor.prototype.runAI = function() {
 
 	var target = closest.actor;
 	if (!target || target.health <= 0) return;
+	else if (closest.distSq >= 3 && Math.random() > this.ai.speed) return;
 	targetPos = target.getPosition();
 
 	var v1 = new THREE.Vector2();
