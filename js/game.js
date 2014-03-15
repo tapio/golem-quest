@@ -138,16 +138,24 @@ Game.prototype.update = function() {
 				}
 			}
 			// Move?
-			if (map.isWalkable(newx, newy))
+			if (map.isWalkable(newx, newy)) {
+				map.grid.setWalkableAt(Math.round(actor.position.x), Math.round(actor.position.y), 1);
 				actor.target = new THREE.Vector3(newx, newy, actor.position.z);
+			}
 		} else {
 			actor.myturn = true;
 			return;
 		}
 	}
 	// If we got here, everybody has had their turn
-	for (var i = 0; i < this.actors.length; ++i)
-		this.actors[i].done = false;
+	map.updatePathFindingGrid();
+	for (var i = 0; i < this.actors.length; ++i) {
+		var actor = this.actors[i];
+		actor.done = false;
+		if (!actor.ai) continue;
+		var pos = actor.getPosition();
+		map.grid.setWalkableAt(Math.round(pos.x), Math.round(pos.y), 0);
+	}
 	++this.round;
 	this.roundTimer = Date.now() + 150;
 };
