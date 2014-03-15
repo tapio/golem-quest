@@ -79,6 +79,7 @@ var KeyboardController = function(index) {
 KeyboardController.prototype = Object.create(Controller.prototype);
 KeyboardController.DefaultMappings = [
 	{ name: "Arrows (keyboard)", up: 38, down: 40, left: 37, right: 39 },
+	{ name: "Numpad (keyboard)", up: 104, down: 98, left: 100, right: 102 },
 	{ name: "WASD (keyboard)", up: 87, down: 83, left: 65, right: 68 },
 	{ name: 'HJKL (keyboard)', up: 75, down: 74, left: 72, right: 76 }
 ];
