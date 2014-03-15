@@ -123,7 +123,8 @@ Actor.prototype.fight = function(other) {
 				game.over = true;
 			} else {
 				// Loot
-				if (Math.random() < 0.67)
+				var lootThreshold = 0.7 - (DIFFICULTY * 0.2);
+				if (Math.random() < lootThreshold)
 					game.spawnRandomItem(other.position);
 			}
 			game.removeActor(other);

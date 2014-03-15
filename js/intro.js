@@ -68,5 +68,7 @@ dom("#start").addEventListener("click", function() {
 		dom("#setup-error").style.display = "block";
 		return;
 	}
+	var difElem = dom("#difficulty");
+	DIFFICULTY = parseInt(difElem.options[difElem.selectedIndex].value, 10);
 	start(players);
 });

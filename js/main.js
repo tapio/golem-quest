@@ -1,5 +1,6 @@
 "use strict";
 var DEVMODE = false;
+var DIFFICULTY = 1;
 var cache, ui, game, clock;
 
 function render() {
@@ -40,6 +41,7 @@ function start(players) {
 	}
 
 	for (i = 0; i < Mobs.length; ++i) {
+		Mobs[i].amount += DIFFICULTY * 4;
 		while (Mobs[i].amount) {
 			Mobs[i].amount--;
 			var monster = new Actor(Mobs[i]);
@@ -49,7 +51,8 @@ function start(players) {
 		}
 	}
 
-	for (i = 0; i < 50; ++i) {
+	var itemCount = 40 - (DIFFICULTY * 10);
+	for (i = 0; i < itemCount; ++i) {
 		game.spawnRandomItem();
 	}
 
