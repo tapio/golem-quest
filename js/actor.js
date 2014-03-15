@@ -29,10 +29,17 @@ var Golems = [
 
 var Mobs = [
 	{
-		model: "spider",
+		model: "kerberos",
 		monster: true,
 		health: 2,
 		attack: 2,
+		defense: 1,
+		speed: 1.0
+	},{
+		model: "spider",
+		monster: true,
+		health: 2,
+		attack: 3,
 		defense: 2,
 		speed: 1.0
 	},{
