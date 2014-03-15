@@ -53,8 +53,11 @@ var KeyboardController = function(index) {
 
 	function onKeyDown(event) {
 		pressed[event.keyCode] = true;
-		if (!pressed[17] && !pressed[18]) // CTRL/ALT for browser hotkeys
-			event.preventDefault();
+		if (pressed[17] || pressed[18]) // CTRL/ALT for browser hotkeys
+			return;
+		if (event.keyCode >= 112 && event.keyCode <= 123) // F1-F12
+			return;
+		event.preventDefault();
 	}
 
 	function onKeyUp(event) {
