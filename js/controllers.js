@@ -67,21 +67,37 @@ var KeyboardController = function(index) {
 
 	this.poll = function() {
 		this.moveInput.set(0, 0);
+		var m = this.mapping;
 
-		if (pressed[this.mapping.left]) this.moveInput.x = -1;
-		else if (pressed[this.mapping.right]) this.moveInput.x = 1;
-		if (pressed[this.mapping.up]) this.moveInput.y = 1;
-		else if (pressed[this.mapping.down]) this.moveInput.y = -1;
+		if (pressed[m.nw]) this.moveInput.set(-1, 1);
+		else if (pressed[m.ne]) this.moveInput.set(1, 1);
+		else if (pressed[m.sw]) this.moveInput.set(-1, -1);
+		else if (pressed[m.se]) this.moveInput.set(1, -1);
+		else {
+			if (pressed[m.left]) this.moveInput.x = -1;
+			else if (pressed[m.right]) this.moveInput.x = 1;
+			if (pressed[m.up]) this.moveInput.y = 1;
+			else if (pressed[m.down]) this.moveInput.y = -1;
+		}
 
 		return Controller.prototype.poll.call(this);
 	};
 };
 KeyboardController.prototype = Object.create(Controller.prototype);
 KeyboardController.DefaultMappings = [
-	{ name: "Arrows (keyboard)", up: 38, down: 40, left: 37, right: 39 },
-	{ name: "Numpad (keyboard)", up: 104, down: 98, left: 100, right: 102 },
-	{ name: "WASD (keyboard)", up: 87, down: 83, left: 65, right: 68 },
-	{ name: 'HJKL (keyboard)', up: 75, down: 74, left: 72, right: 76 }
+	{   name: "Arrows + Ins,Del,PgUp,PgDn (keyboard)",
+		up: 38, down: 40, left: 37, right: 39,
+		nw: 45, ne: 33, sw: 46, se: 34
+	},{ name: "Numpad (keyboard)",
+		up: 104, down: 98, left: 100, right: 102,
+		nw: 103, ne: 105, sw: 97, se: 99
+	},{ name: "WASD QEZC (keyboard)",
+		up: 87, down: 83, left: 65, right: 68,
+		nw: 81, ne: 69, sw: 90, se: 67
+	}, { name: 'HJKL YUBN (keyboard)',
+		up: 75, down: 74, left: 72, right: 76,
+		nw: 89, ne: 85, sw: 66, se: 78
+	}
 ];
 
 
