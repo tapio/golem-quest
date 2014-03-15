@@ -30,41 +30,16 @@ function populateControllerSelectors() {
 
 })();
 
-var golems = [
-	{
-		name: "Stone Golem",
-		model: "golem-01",
-		css: "stone",
-		health: 6,
-		attack: 3,
-		defense: 4
-	},{
-		name: "Ice Golem",
-		model: "golem-02",
-		css: "ice",
-		health: 8,
-		attack: 3,
-		defense: 3
-	},{
-		name: "Fire Golem",
-		model: "golem-03",
-		css: "fire",
-		health: 6,
-		attack: 4,
-		defense: 3
-	}
-];
-
 if (window.location.hash == "#dev") {
 	DEVMODE = true;
-	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);
+	start([{ character: randElem(Golems), controllerType: "keyboard", controllerIndex: 0 }]);
 }
 
 if (window.location.hash == "#coop-dev") {
 	DEVMODE = true;
 	start([
-		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 },
-		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 1 }
+		{ character: randElem(Golems), controllerType: "keyboard", controllerIndex: 0 },
+		{ character: randElem(Golems), controllerType: "keyboard", controllerIndex: 1 }
 	]);
 }
 
@@ -75,7 +50,7 @@ dom("#start").addEventListener("click", function() {
 		var elem = dom("#select-controller-" + i);
 		if (elem.selectedIndex == 0) continue;
 		players.push({
-			character: golems[i],
+			character: Golems[i],
 			controllerType: elem.selectedIndex <= KeyboardController.DefaultMappings.length ? "keyboard" : "gamepad",
 			controllerIndex: elem.options[elem.selectedIndex].value
 		});

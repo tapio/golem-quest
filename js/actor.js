@@ -2,6 +2,31 @@
 
 var FACTION = { PLAYER: 1, MONSTER: -1 };
 
+var Golems = [
+	{
+		name: "Stone Golem",
+		model: "golem-01",
+		css: "stone",
+		health: 8,
+		attack: 3,
+		defense: 4
+	},{
+		name: "Ice Golem",
+		model: "golem-02",
+		css: "ice",
+		health: 10,
+		attack: 3,
+		defense: 3
+	},{
+		name: "Fire Golem",
+		model: "golem-03",
+		css: "fire",
+		health: 8,
+		attack: 4,
+		defense: 3
+	}
+];
+
 var Mobs = [
 	{
 		model: "spider",
