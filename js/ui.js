@@ -5,6 +5,7 @@ function UI() {
 
 	this.players = [];
 	this.elems = [];
+	this.domUpdateTimer = 0;
 
 	this.renderer = new THREE.CSS3DRenderer();
 	document.getElementById("container").appendChild(this.renderer.domElement);
@@ -32,14 +33,19 @@ UI.prototype.inWorldMsg = function(msg, position) {
 };
 
 UI.prototype.render = function() {
+	var time = Date.now();
+
 	// Sidebar
-	for (var i = 0; i < this.players.length; ++i) {
-		var pl = this.players[i];
-		dom("#player-" + (i+1) + " .health").innerHTML = buildString("♥", pl.health);
-		dom("#player-" + (i+1) + " .attack").innerHTML = buildString("★", pl.attack);
-		dom("#player-" + (i+1) + " .defense").innerHTML = buildString("✚", pl.defense);
-		if (this.players.length > 1)
-			dom("#player-" + (i+1) + " .turn-indicator").style.display = pl.myturn ? "inline" : "none";
+	if (time > this.domUpdateTimer) {
+		for (var i = 0; i < this.players.length; ++i) {
+			var pl = this.players[i];
+			dom("#player-" + (i+1) + " .health").innerHTML = buildString("♥", pl.health);
+			dom("#player-" + (i+1) + " .attack").innerHTML = buildString("★", pl.attack);
+			dom("#player-" + (i+1) + " .defense").innerHTML = buildString("✚", pl.defense);
+			if (this.players.length > 1)
+				dom("#player-" + (i+1) + " .turn-indicator").style.display = pl.myturn ? "inline" : "none";
+		}
+		this.domUpdateTimer = time + 500;
 	}
 
 	// In-world hud
@@ -47,7 +53,6 @@ UI.prototype.render = function() {
 		this.renderer.render(this.scene, game.camera);
 
 	// Reap faded elements
-	var time = Date.now();
 	for (var i = this.elems.length - 1; i >= 0; --i) {
 		var elem = this.elems[i];
 		if (time >= elem.timeout) {
