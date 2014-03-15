@@ -6,11 +6,14 @@ body {
 	color: #ddd;
 	background-color: #111;
 	margin: 0px;
-	overflow: hidden;
 }
 
 h1 { font-size: 80px; }
 h3 { margin: 0px; }
+
+strong { color: red; }
+
+.no-overflow { overflow: hidden;}
 
 #title {
 	color: #dfd;
@@ -59,6 +62,12 @@ select { width: 150px; }
 #start {
 	margin-top: 30px;
 	width: 100px;
+}
+
+footer {
+	color: gray;
+	font-size: 12px;
+	margin-top: 50px;
 }
 
 /* GAME */

@@ -16,6 +16,7 @@ function render() {
 function start(players) {
 	dom("#intro").style.display = "none";
 	dom("#container").style.display = "block";
+	document.body.className += " no-overflow";
 	cache = new Cache();
 	ui = new UI();
 	game = new Game();
