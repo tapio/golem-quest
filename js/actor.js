@@ -4,14 +4,24 @@ var FACTION = { PLAYER: 1, MONSTER: -1 };
 
 var Mobs = [
 	{
-		model: "ghoul",
-		monster: true
-	},{
 		model: "spider",
-		monster: true
+		monster: true,
+		health: 2,
+		attack: 2,
+		defense: 2
+	},{
+		model: "ghoul",
+		monster: true,
+		health: 3,
+		attack: 3,
+		defense: 3
+
 	},{
 		model: "horn-head",
-		monster: true
+		monster: true,
+		health: 5,
+		attack: 7,
+		defense: 5
 	}
 ];
 
