@@ -30,6 +30,7 @@ var Golems = [
 var Mobs = [
 	{
 		model: "kerberos",
+		amount: 17,
 		monster: true,
 		health: 2,
 		attack: 2,
@@ -37,6 +38,7 @@ var Mobs = [
 		speed: 1.0
 	},{
 		model: "spider",
+		amount: 15,
 		monster: true,
 		health: 2,
 		attack: 3,
@@ -44,6 +46,7 @@ var Mobs = [
 		speed: 1.0
 	},{
 		model: "ghoul",
+		amount: 10,
 		monster: true,
 		health: 3,
 		attack: 3,
@@ -52,6 +55,7 @@ var Mobs = [
 
 	},{
 		model: "horn-head",
+		amount: 8,
 		monster: true,
 		health: 5,
 		attack: 7,

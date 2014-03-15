@@ -39,11 +39,14 @@ function start(players) {
 		ui.track(pl);
 	}
 
-	for (i = 0; i < 50; ++i) {
-		var monster = new Actor(randElem(Mobs));
-		pos = game.world.map.findRandomPosition();
-		monster.position.x = pos.x;
-		monster.position.y = pos.y;
+	for (i = 0; i < Mobs.length; ++i) {
+		while (Mobs[i].amount) {
+			Mobs[i].amount--;
+			var monster = new Actor(Mobs[i]);
+			pos = game.world.map.findRandomPosition();
+			monster.position.x = pos.x;
+			monster.position.y = pos.y;
+		}
 	}
 
 	for (i = 0; i < 50; ++i) {
