@@ -56,10 +56,12 @@ var golems = [
 ];
 
 if (window.location.hash == "#dev") {
+	DEVMODE = true;
 	start([{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 }]);
 }
 
 if (window.location.hash == "#coop-dev") {
+	DEVMODE = true;
 	start([
 		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 0 },
 		{ character: randElem(golems), controllerType: "keyboard", controllerIndex: 1 }

@@ -31,9 +31,11 @@ function Game() {
 	window.addEventListener("resize", resize);
 	resize();
 
-	this.rendererInfo = document.getElementById("renderer-info");
-	this.stats = new Stats();
-	document.body.appendChild(this.stats.domElement);
+	if (DEVMODE) {
+		this.rendererInfo = document.getElementById("renderer-info");
+		this.stats = new Stats();
+		document.body.appendChild(this.stats.domElement);
+	}
 }
 
 Game.prototype.addActor = function(actor) {
@@ -179,17 +181,20 @@ Game.prototype.render = function(dt) {
 	camTarget.y -= 2;
 	lerp2d(this.camera.position, camTarget, dt * 5);
 	this.renderer.render(this.world.scene, this.camera);
-	this.stats.update();
 
-	var info = this.renderer.info;
-	var report = [
-		"Prog:", info.memory.programs,
-		"Geom:", info.memory.geometries,
-		"Tex:", info.memory.textures,
-		"Calls:", info.render.calls,
-		"Verts:", info.render.vertices,
-		"Faces:", info.render.faces,
-		"Pts:", info.render.points
-	];
-	this.rendererInfo.innerHTML = report.join(' ');
+	if (DEVMODE) {
+		this.stats.update();
+
+		var info = this.renderer.info;
+		var report = [
+			"Prog:", info.memory.programs,
+			"Geom:", info.memory.geometries,
+			"Tex:", info.memory.textures,
+			"Calls:", info.render.calls,
+			"Verts:", info.render.vertices,
+			"Faces:", info.render.faces,
+			"Pts:", info.render.points
+		];
+		this.rendererInfo.innerHTML = report.join(' ');
+	}
 };

@@ -1,5 +1,5 @@
 "use strict";
-
+var DEVMODE = false;
 var cache, ui, game, clock;
 
 function render() {
