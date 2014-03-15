@@ -53,14 +53,17 @@ var KeyboardController = function(index) {
 
 	function onKeyDown(event) {
 		pressed[event.keyCode] = true;
+		if (!pressed[17] && !pressed[18]) // CTRL/ALT for browser hotkeys
+			event.preventDefault();
 	}
 
 	function onKeyUp(event) {
 		pressed[event.keyCode] = false;
+		event.preventDefault();
 	}
 
-	document.addEventListener('keydown', onKeyDown, false);
-	document.addEventListener('keyup', onKeyUp, false);
+	document.addEventListener('keydown', onKeyDown, true);
+	document.addEventListener('keyup', onKeyUp, true);
 
 	this.poll = function() {
 		this.moveInput.set(0, 0);
