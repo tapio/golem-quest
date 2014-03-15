@@ -119,7 +119,7 @@ Actor.prototype.fight = function(other) {
 				game.over = true;
 			} else {
 				// Loot
-				if (Math.random() < 0.5)
+				if (Math.random() < 0.67)
 					game.spawnRandomItem(other.position);
 			}
 			game.removeActor(other);
