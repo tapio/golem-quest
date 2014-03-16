@@ -2,8 +2,7 @@
 
 var MapGen = {};
 
-MapGen.generateOverworld = function(seed) {
-	var rnd = seed === undefined ? new Alea() : new Alea(seed);
+MapGen.generateOverworld = function() {
 	var w = 100;
 	var h = 100;
 	var map = new Map(w, h, OPEN);
@@ -11,7 +10,7 @@ MapGen.generateOverworld = function(seed) {
 
 	for (j = 0; j < h; ++j) {
 		for (i = 0; i < w; ++i) {
-			var r = rnd.random();
+			var r = Math.random();
 			if (r < 0.075)
 				map.put(i, j, ROCK);
 			else if (r < 0.2)
