@@ -21,6 +21,12 @@ Playing offline (more involved)
 3. Navigate to the index.html file in the root of the game's files
 
 
+Versions
+--------
+
+This game was originally done in 7 days for the Seven Day Roguelike Challenge 2014. It is also an entry to Procedural Death Jam that ran concurrently, but lasted a day longer. Between the 7DRL and PDJ submissions, there was only documentation changes and one minor bug fix. As the game is complete, I don't expect major new development. Nevertheless, these original versions are preserved in git tags `7drl` and `pdj`.
+
+
 Credits
 -------
 
