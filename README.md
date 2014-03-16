@@ -19,3 +19,41 @@ Playing offline (more involved)
 2. Either setup your browser to temporarily accept local file access or run a web server
    - Instructions: https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
 3. Navigate to the index.html file in the root of the game's files
+
+
+Credits
+-------
+
+**Programming**
+
+* Tapio Vierros
+
+**Art**
+
+* Yughues (aka Nobiax)
+	* Ferns, stones, ground textures, replacement textures for some other models
+* Clint Bellanger
+	* Animal figurines, potions
+* hendori-sama, umask007
+	* Golems
+* riidom
+	* Ghoul
+* Clement Wu, Nikolaus & Botanic
+	* Cerberus
+* Wciow and John.d.h
+	* Spider
+* Lamoot, Clint Bellanger, arikel, CruzR
+	* Pillars and obelisks
+* Daniel74
+	* Tower
+* Kasia88, SeekerofAwe, AncientBeast
+	* Horn head
+* Lorc
+	* Favicon
+
+For license information and links, see the readme file of the corresponding asset.
+
+**Libraries**
+
+* Three.js - http://threejs.org/ (MIT)
+* PathFinding.js - https://github.com/qiao/PathFinding.js (MIT)
