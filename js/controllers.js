@@ -1,7 +1,7 @@
 "use strict";
 
 // Gamepad support stuff
-navigator.getGamepads = navigator.webkitGetGamepads || navigator.mozGetGamepads || navigator.getGamepads;
+navigator.getGamepads = navigator.getGamepads || navigator.webkitGetGamepads || navigator.mozGetGamepads;
 if (!!navigator.getGamepads) console.log("Gamepads are supported");
 else console.log("No gamepad support");
 window.addEventListener("gamepadconnected", function(e) {
